@@ -1,0 +1,198 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+  summary: |-
+    Income Tax (Amendment) Act, 2023 (Act No. 22 of 2023), in force 1 January 2024. Section 11(a) amends Charging Schedule paragraph 2(1): item (c)'s bound becomes sixty-one thousand two hundred Kwacha and items (d)-(f) are substituted, charging the balance of an individual's income exceeding 61,200 up to 85,200 at twenty percent, exceeding 85,200 up to 110,400 at thirty percent, and exceeding 110,400 at thirty-seven percent per annum - the individual rate structure for the 2024 and 2025 charge years. The act's other amendments (paragraph 5 including the cotton items and the one-fifth substitution in item (a), and administrative sections) are outside this module's encoded surface.
+rules:
+  - name: individual_income_zero_rate_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)(i)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "sixty-one thousand two hundred Kwacha"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          61200
+
+  - name: individual_income_twenty_percent_band_lower_threshold
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)(ii), item (d)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "exceeds sixty-one thousand two hundred Kwacha"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          61200
+
+  - name: individual_income_twenty_percent_band_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)(ii), item (d)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "does not exceed eighty-five thousand two hundred Kwacha"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          85200
+
+  - name: individual_income_twenty_percent_rate
+    kind: parameter
+    dtype: Rate
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)(ii), item (d)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "at the rate of twenty percent per annum"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.20
+
+  - name: individual_income_thirty_percent_band_lower_threshold
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)(ii), item (e)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "exceeds eighty-five thousand two hundred Kwacha"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          85200
+
+  - name: individual_income_thirty_percent_band_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)(ii), item (e)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "does not exceed one hundred and ten thousand four hundred Kwacha"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          110400
+
+  - name: individual_income_thirty_percent_rate
+    kind: parameter
+    dtype: Rate
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)(ii), item (e)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "at the rate of thirty percent per annum"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.30
+
+  - name: individual_income_thirty_seven_percent_band_lower_threshold
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)(ii), item (f)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "exceeds one hundred and ten thousand four hundred Kwacha"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          110400
+
+  - name: individual_income_thirty_seven_percent_rate
+    kind: parameter
+    dtype: Rate
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)(ii), item (f)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "at the rate of thirty-seven percent per annum"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.37
+
+  - name: individual_income_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Income Tax (Amendment) Act, 2023, section 11(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "on the balance of so much of an individual's income as exceeds..."
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          individual_income_twenty_percent_rate * max(0, min(individual_income, individual_income_twenty_percent_band_upper_threshold) - individual_income_twenty_percent_band_lower_threshold)
+          + individual_income_thirty_percent_rate * max(0, min(individual_income, individual_income_thirty_percent_band_upper_threshold) - individual_income_thirty_percent_band_lower_threshold)
+          + individual_income_thirty_seven_percent_rate * max(0, individual_income - individual_income_thirty_seven_percent_band_lower_threshold)
