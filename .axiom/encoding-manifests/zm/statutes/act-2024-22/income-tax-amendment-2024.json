@@ -1,0 +1,42 @@
+{
+  "applied_files": [
+    {
+      "path": "zm/statutes/act-2024-22/income-tax-amendment-2024.test.yaml",
+      "sha256": "acc911c4614275834aa84397e829fed3d9a08b89fda9e9f07f7e2801b43c8093"
+    },
+    {
+      "path": "zm/statutes/act-2024-22/income-tax-amendment-2024.yaml",
+      "sha256": "88958d7eb39e699cb1a4e3e81b180b792bbebe58dffaec8c3b112a8e1fce1dc6"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "9759dd348474c15f9fca71253431db76b9273fc7",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode",
+    "version": "0.2.1192",
+    "version_commit": "9759dd348474c15f9fca71253431db76b9273fc7"
+  },
+  "axiom_encode_version": "0.2.1192",
+  "backend": "manual",
+  "citation": "zm:statutes/act-2024-22/income-tax-amendment-2024",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-08T15:13:51.139572+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpso7e20ao/sign-applied-files/zm/statutes/act-2024-22/income-tax-amendment-2024.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpso7e20ao",
+  "generated_output_sha256": "88958d7eb39e699cb1a4e3e81b180b792bbebe58dffaec8c3b112a8e1fce1dc6",
+  "generation_prompt_sha256": null,
+  "manual_exception": "#1",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "e54caecc06914875f2de0371a18b4c4b6d19be84cd744f0977b212a465028794"
+  },
+  "tool": "axiom-encode sign-applied-files",
+  "trace_file": null,
+  "trace_sha256": null
+}

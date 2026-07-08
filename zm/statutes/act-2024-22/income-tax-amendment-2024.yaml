@@ -1,0 +1,78 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/act-2024-22/income-tax-amendment-2024
+  summary: |-
+    Income Tax (Amendment) Act, 2024 commences on 1st January, 2025. It amends the Income Tax Act by replacing loss deduction rules with a fifty percent same-source income limit; allowing employer deductions for contributions to an approved fund; allowing deductions for skills development levy; revising understatement, turnover, advance income tax, withholding-agent penalty, motor vehicle, betting and gaming, export, property-letting, copper-cathode manufacturing, PPP, and gaming-winnings tax rates and thresholds.
+rules:
+  - name: micro_business_turnover_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Act No. 22 of 2024, s. 14(b), substituting Ninth Schedule Part II
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2024-22/income-tax-amendment-2024
+              excerpt: "K12, 000 or less 0 percent"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          12000
+  - name: turnover_tax_upper_threshold
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Act No. 22 of 2024, s. 8 (s.64A turnover ceiling) with the Ninth Schedule Part II row
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2024-22/income-tax-amendment-2024
+              excerpt: "the deletion of the words \u201ceight hundred thousand kwacha\u201d and the substitution therefor of the words \u201cfive million kwacha\u201d"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          5000000
+  - name: turnover_tax_standard_rate
+    kind: parameter
+    dtype: Rate
+    source: Act No. 22 of 2024, s. 14(b), substituting Ninth Schedule Part II
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2024-22/income-tax-amendment-2024
+              excerpt: "Above K12, 000 up to K5, 000 000 5 percent"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.05
+  - name: turnover_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Year
+    unit: ZMW
+    source: Act No. 22 of 2024, s. 14(b), substituting Ninth Schedule Part II
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2024-22/income-tax-amendment-2024
+              excerpt: "Turnover per annaum Tax Rate K12, 000 or less 0 percent Above K12, 000 up to K5, 000 000 5 percent"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          if annual_turnover <= micro_business_turnover_upper_threshold: 0 else: if annual_turnover <= turnover_tax_upper_threshold: turnover_tax_standard_rate * annual_turnover else: 0
