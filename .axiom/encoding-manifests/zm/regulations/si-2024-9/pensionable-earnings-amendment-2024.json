@@ -1,0 +1,42 @@
+{
+  "applied_files": [
+    {
+      "path": "zm/regulations/si-2024-9/pensionable-earnings-amendment-2024.test.yaml",
+      "sha256": "b62c24be9d9e552085b435b1ed0efb24280206f33890db02a779ceb014e66da7"
+    },
+    {
+      "path": "zm/regulations/si-2024-9/pensionable-earnings-amendment-2024.yaml",
+      "sha256": "08630d1f110c7ebc1993f63f30d798e4b2de8d7658431462791f7f66abd867f9"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "9759dd348474c15f9fca71253431db76b9273fc7",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode",
+    "version": "0.2.1192",
+    "version_commit": "9759dd348474c15f9fca71253431db76b9273fc7"
+  },
+  "axiom_encode_version": "0.2.1192",
+  "backend": "manual",
+  "citation": "zm:regulations/si-2024-9/pensionable-earnings-amendment-2024",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-08T15:26:17.295879+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp9dymcifu/sign-applied-files/zm/regulations/si-2024-9/pensionable-earnings-amendment-2024.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp9dymcifu",
+  "generated_output_sha256": "08630d1f110c7ebc1993f63f30d798e4b2de8d7658431462791f7f66abd867f9",
+  "generation_prompt_sha256": null,
+  "manual_exception": "#1",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "352d60aebc3a6d87f93bc4883acabf5a9498117ba6fda17be76a2e69f0b9d26b"
+  },
+  "tool": "axiom-encode sign-applied-files",
+  "trace_file": null,
+  "trace_sha256": null
+}

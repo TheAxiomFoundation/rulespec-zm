@@ -8,8 +8,35 @@
 # Maintained by: axiom-encode oracle-coverage-pending sync.
 version: 1
 issue: https://github.com/TheAxiomFoundation/rulespec-zm/issues/1
-ceiling: 14
+ceiling: 23
 entries:
+  - legal_id: zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employee_contribution_rate
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employee_monthly_contribution_amount
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employer_contribution_rate
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employer_monthly_contribution_amount
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#monthly_pensionable_earnings
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employee_contribution
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employer_contribution
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_share_rate
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#social_security_ceiling_monthly
+    source: manual
+    since: 2026-07-08
   - legal_id: zm:statutes/act-2023-22/income-tax-amendment-2023#individual_income_tax
     source: manual
     since: 2026-07-08
