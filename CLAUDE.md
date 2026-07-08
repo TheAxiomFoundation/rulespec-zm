@@ -4,9 +4,9 @@ This repo stores Zambia RuleSpec source registry materials, oracle references, a
 
 ## Scope
 
-- `zm/statutes/`: Zambia Acts of Parliament — the Income Tax Act (Cap 340) as amended, the VAT Act (Cap 349), the Excise Duty Act, the NSSF Act, the Local Governments Act, and other primary law needed for tax-benefit modeling.
-- `zm/regulations/`: statutory instruments made under the governing Acts.
-- `zm/policies/`: URA administrative guidance, PAYE rate surfaces, practice notes, and social-protection programme rules (Senior Citizens Grant) set administratively.
+- `zm/statutes/`: Zambia Acts of Parliament — the Income Tax Act (Cap. 323) as amended, the Value Added Tax Act (Cap. 331), the Customs and Excise Act (Cap. 322), the National Pension Scheme Act (Cap. 256), the National Health Insurance Act, 2018, and other primary law needed for tax-benefit modeling.
+- `zm/regulations/`: statutory instruments made under the governing Acts (Pensionable Earnings Regulations, NHI General Regulations, rate orders).
+- `zm/policies/`: ZRA practice notes captured as verified reproductions of undigitized statutory instruments, and social-protection programme rules (Social Cash Transfer and the other MCDSS/MoE/MoA programmes) set administratively.
 - `programs/`: declarative compose specs (one per jurisdiction/program/period).
 - `data/corpus/`: source inventory, ingestion notes, provision locators, and promoted official-source extracts.
 - `data/coverage/`: tax-benefit coverage backlog and source map.
@@ -15,16 +15,16 @@ This repo stores Zambia RuleSpec source registry materials, oracle references, a
 ## Do
 
 - Treat the scope as a Zambia tax-benefit surface backed by Zambia upstream law.
-- Start from the furthest upstream available source: Zambia Gazette assented Act prints (Parliament of Zambia) and Law Development Centre revised editions first, URA rate tables/guides and Ministry of Gender programme documentation only after the governing Act is identified. ULII document pages are bot-gated; hunt prints via parliament.go.zm and gazettes.africa.
+- Start from the furthest upstream available source: Parliament of Zambia assented Act prints and Government Printer editions first (parliament.gov.zm serves direct PDFs; ZambiaLII AKN source PDFs are open), statutory-instrument gazette prints next, ZRA practice notes and ministry programme documentation only after the governing instrument is identified — or as verified reproductions where a primary SI print is not publicly digitized (flag this in manifest metadata).
 - Add RuleSpec under `zm/statutes/`, `zm/regulations/`, or `zm/policies/` with companion `.test.yaml` files.
-- Keep source law provenance in corpus artifacts and cite those corpus paths from RuleSpec modules via `module.source_verification.corpus_citation_path`.
-- Use FY2025/26 (Zambia's tax year runs 1 July–30 June) as the validation year for encoded amounts; indexed/annual values must be corpus-grounded, never invented. MicroZAMOD system UG_2025 corresponds to FY2025/26.
+- Keep source law provenance in corpus artifacts and cite those corpus paths from RuleSpec modules via `module.source_verification.corpus_citation_path` (or `corpus_citation_paths` for multi-instrument modules).
+- Use CY2025 as the validation year for encoded amounts (Zambia's charge year is the calendar year; the December amendment package commences 1 January). MicroZAMOD system ZM_2025 corresponds to CY2025. Indexed/annual values must be corpus-grounded, never invented.
 - Keep exact oracle versions in `data/oracles/oracle-index.json`. The MicroZAMOD bundle (SOUTHMOD A4.0) is licensed and non-redistributable — never commit bundle bytes, dataset rows, or model XML; only comparison statistics and MicroZAMOD-produced values may be recorded.
 - Sync `axiom-encode` and `.axiom/toolchain.toml` before substantial encoding runs.
 
 ## Do Not
 
-- Use URA calculator pages, PAYE ready-reckoners, or third-party summaries as the first legal source when an Act governs the rule.
+- Use ZRA calculator pages, PAYE ready-reckoners, or third-party summaries as the first legal source when an Act or statutory instrument governs the rule.
 - Invent, round, or interpolate any Zambian monetary amount, rate band, or threshold. Every number must come verbatim from a captured official provision.
 - Migrate MicroZAMOD, EUROMOD/SOUTHMOD, or agency calculator code mechanically as RuleSpec.
 - Add generated source payload dumps, formula artifacts, `parameters.yaml`, or standalone YAML fixtures outside allowed RuleSpec roots.

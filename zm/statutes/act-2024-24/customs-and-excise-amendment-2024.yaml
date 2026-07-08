@@ -1,0 +1,338 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_paths:
+      - zm/statute/act-2024-24/customs-and-excise-amendment-2024
+      - zm/statute/act-2023-25/customs-and-excise-amendment-2023
+      - zm/statute/act-2022-25/customs-and-excise-amendment-2022
+      - zm/statute/act-2021-45/customs-and-excise-amendment-2021
+      - zm/statute/act-2018-19/customs-and-excise-amendment-2018
+      - zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - zm/statute/act-2024-24/customs-and-excise-amendment-2024
+        - zm/statute/act-2023-25/customs-and-excise-amendment-2023
+        - zm/statute/act-2022-25/customs-and-excise-amendment-2022
+        - zm/statute/act-2021-45/customs-and-excise-amendment-2021
+        - zm/statute/act-2018-19/customs-and-excise-amendment-2018
+        - zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+      rationale: |-
+        Every encoded rate row comes from the captured Customs and Excise
+        (Amendment) Act prints - the higher statutory authority was
+        checked first and carries all seven parameters verbatim. The ZRA
+        Practice Note No. 1/2024 policy capture is cited only for the
+        clear-beer suspension layer (Customs and Excise (Suspension)
+        (Clear Beer) Regulations, S.I. Nos. 66 and 71 of 2023, in effect
+        1 January 2024 and self-revoking 31 December 2026), whose primary
+        gazette prints are not publicly digitized; the practice note is
+        their verbatim official reproduction. The suspension is
+        documented in the module summary and is not encoded as the
+        statutory rate.
+  summary: |-
+    Customs and Excise Act (Cap. 322) Second Schedule excise rows in
+    force for the 2025 charge year, assembled from the amendment chain:
+    opaque beer (2203.00.10) at K0.25 per litre (Act 45 of 2021); wine
+    (22.04/22.05/2206) at 60 percent (Act 19 of 2018); spirits and
+    ethyl alcohol at 60 percent (2207.10.00 by Act 45 of 2021,
+    2207.20.10 by Act 25 of 2022, 2207.20.90 by Act 25 of 2023);
+    cigarettes (24.01/24.02 and 2403.x) at K452 per mille (Act 24 of
+    2024, from K400); petrol (2710.12.10) at K2.34 per litre and diesel
+    (2710.19.10) at K0.75 per litre (Act 24 of 2024, substituting
+    heading 9(3) - the per-litre figures carry the combined excise and
+    National Road Fund fuel-levy amount, as the prior K2.07 figure
+    decomposed administratively as K12.01 excise plus K8.69 levy per
+    dekalitre). Clear beer (2203.00.90) carries a statutory rate of 60
+    percent (Act 19 of 2018); the Customs and Excise (Suspension)
+    (Clear Beer) Regulations (S.I. Nos. 66 and 71 of 2023, in effect
+    1 January 2024 and self-revoking 31 December 2026, captured through
+    the ZRA Practice Note No. 1/2024 reproduction) suspend it to
+    feedstock rates (malt to 20 percent from 40, cassava to 5 percent
+    from 10, with small/medium-manufacturer and excess-quantity sorghum
+    beer excluded) - the time-bounded suspension layer is documented
+    here and not encoded as the statutory rate.
+rules:
+  - name: opaque_beer_duty_per_litre
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Customs and Excise (Amendment) Act, 2021 (Act No. 45 of 2021), Second Schedule heading 4, subheading 2203.00.10
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+              excerpt: "the substitution therefor of the figure “k0.25/ltr”"
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          0.25
+
+  - name: wine_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Customs and Excise (Amendment) Act, 2018 (Act No. 19 of 2018), Second Schedule heading 5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "Wine of fresh grapes"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "60%"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          0.60
+
+  - name: spirits_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Customs and Excise (Amendment) Act, 2021 (Act No. 45 of 2021), Second Schedule heading 6, subheading 2207.10.00 (with 2207.20.10 per Act 25 of 2022 and 2207.20.90 per Act 25 of 2023)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+              excerpt: "2207.10.00"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+              excerpt: "the substitution therefor of the figure “60%”"
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          0.60
+
+  - name: clear_beer_statutory_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Customs and Excise (Amendment) Act, 2018 (Act No. 19 of 2018), Second Schedule heading 4, subheading 2203.00.90 (suspended to feedstock rates by S.I. 66/71 of 2023 through 31 December 2026)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "Other, including ale, lager and stout 2203.00.90"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "60%"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          0.60
+
+  - name: cigarette_duty_per_mille
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Customs and Excise (Amendment) Act, 2024 (Act No. 24 of 2024), Second Schedule heading 7 (headings 24.01/24.02 and subheadings 2403.11.00, 2403.19.10, 2403.19.90, 2403.91.00, 2403.99.00)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2024-24/customs-and-excise-amendment-2024
+              excerpt: "the substitution therefor of the figure “K452”"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          452
+
+  - name: petrol_duty_per_litre
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Customs and Excise (Amendment) Act, 2024 (Act No. 24 of 2024), Second Schedule heading 9(3)(a), subheading 2710.12.10 (combined excise and fuel-levy figure)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2024-24/customs-and-excise-amendment-2024
+              excerpt: "K2.34/ltr"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          2.34
+
+  - name: diesel_duty_per_litre
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Customs and Excise (Amendment) Act, 2024 (Act No. 24 of 2024), Second Schedule heading 9(3)(e), subheading 2710.19.10 (combined excise and fuel-levy figure)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2024-24/customs-and-excise-amendment-2024
+              excerpt: "2710.19.10"
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2024-24/customs-and-excise-amendment-2024
+              excerpt: "K0.75"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          0.75
+
+  - name: opaque_beer_duty
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Second Schedule heading 4, subheading 2203.00.10 (per-litre duty on quantity)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+              excerpt: "the substitution therefor of the figure “k0.25/ltr”"
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          opaque_beer_duty_per_litre * max(0, opaque_beer_litres)
+
+  - name: wine_duty
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Second Schedule heading 5 (ad valorem on taxable value)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "Wine of fresh grapes"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          wine_duty_rate * max(0, wine_taxable_value)
+
+  - name: spirits_duty
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Second Schedule heading 6 (ad valorem on taxable value)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+              excerpt: "2207.10.00"
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          spirits_duty_rate * max(0, spirits_taxable_value)
+
+  - name: clear_beer_statutory_duty
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Second Schedule heading 4, subheading 2203.00.90 (statutory rate; the S.I. 66/71 of 2023 suspension layer is documented in the module summary)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "Other, including ale, lager and stout 2203.00.90"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          clear_beer_statutory_duty_rate * max(0, clear_beer_taxable_value)
+
+  - name: cigarette_duty
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Second Schedule heading 7 (specific duty per mille of cigarettes; input in milles, i.e. thousands of sticks)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2024-24/customs-and-excise-amendment-2024
+              excerpt: "the substitution therefor of the figure “K452”"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          cigarette_duty_per_mille * max(0, cigarette_milles)
+
+  - name: petrol_duty
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Second Schedule heading 9(3)(a) (per-litre duty on quantity)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2024-24/customs-and-excise-amendment-2024
+              excerpt: "K2.34/ltr"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          petrol_duty_per_litre * max(0, petrol_litres)
+
+  - name: diesel_duty
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Second Schedule heading 9(3)(e) (per-litre duty on quantity)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2024-24/customs-and-excise-amendment-2024
+              excerpt: "K0.75"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          diesel_duty_per_litre * max(0, diesel_litres)

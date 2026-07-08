@@ -1,0 +1,42 @@
+{
+  "applied_files": [
+    {
+      "path": "zm/statutes/act-2024-24/customs-and-excise-amendment-2024.test.yaml",
+      "sha256": "5b47cc8e6d966857d93df7d3a0244332dbb50f536aeb06f17c7b9965ba601d8f"
+    },
+    {
+      "path": "zm/statutes/act-2024-24/customs-and-excise-amendment-2024.yaml",
+      "sha256": "e903dfdc794b02ba00289a90d4ee843fc5aec361f99051b27f2515808628916f"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "177867c18d73e9d0e33ada9616d23bc1c36cbac0",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode",
+    "version": "0.2.1195",
+    "version_commit": "177867c18d73e9d0e33ada9616d23bc1c36cbac0"
+  },
+  "axiom_encode_version": "0.2.1195",
+  "backend": "manual",
+  "citation": "zm:statutes/act-2024-24/customs-and-excise-amendment-2024",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-08T23:43:20.263696+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpni1kdn85/sign-applied-files/zm/statutes/act-2024-24/customs-and-excise-amendment-2024.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmpni1kdn85",
+  "generated_output_sha256": "e903dfdc794b02ba00289a90d4ee843fc5aec361f99051b27f2515808628916f",
+  "generation_prompt_sha256": null,
+  "manual_exception": "#1",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "ce36737e50d7eb8686fb72750618cf0ff84df1acb966a8e63db57afbddd48f53"
+  },
+  "tool": "axiom-encode sign-applied-files",
+  "trace_file": null,
+  "trace_sha256": null
+}

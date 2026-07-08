@@ -8,7 +8,7 @@
 # Maintained by: axiom-encode oracle-coverage-pending sync.
 version: 1
 issue: https://github.com/TheAxiomFoundation/rulespec-zm/issues/1
-ceiling: 23
+ceiling: 40
 entries:
   - legal_id: zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employee_contribution_rate
     source: manual
@@ -77,5 +77,56 @@ entries:
     source: manual
     since: 2026-07-08
   - legal_id: zm:statutes/act-2024-22/income-tax-amendment-2024#turnover_tax_upper_threshold
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#cigarette_duty
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#cigarette_duty_per_mille
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#clear_beer_statutory_duty
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#clear_beer_statutory_duty_rate
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#diesel_duty
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#diesel_duty_per_litre
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#opaque_beer_duty
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#opaque_beer_duty_per_litre
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#petrol_duty
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#petrol_duty_per_litre
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#spirits_duty
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#spirits_duty_rate
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#wine_duty
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/act-2024-24/customs-and-excise-amendment-2024#wine_duty_rate
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/cap-331/value-added-tax-act#vat_amount
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/cap-331/value-added-tax-act#vat_standard_rate
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/cap-331/value-added-tax-act#vat_statutory_default_rate
     source: manual
     since: 2026-07-08

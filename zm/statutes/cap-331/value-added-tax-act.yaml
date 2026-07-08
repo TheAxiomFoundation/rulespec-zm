@@ -1,0 +1,91 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_paths:
+      - zm/statute/cap-331/value-added-tax-act
+      - zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
+    upstream_source_check:
+      status: official_parameter_source
+      checked_paths:
+        - zm/statute/cap-331/value-added-tax-act
+        - zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
+      rationale: |-
+        The sixteen percent standard rate is set by statutory order under
+        the express section 9(3) delegation ("unless the Minister... by
+        statutory order, determines a lower rate") in the captured Value
+        Added Tax Act (Cap. 331) - the higher statutory authority was
+        checked first and carries the default rate and the delegation.
+        The order itself (Value Added Tax (Rate of Tax) Order, 2008,
+        S.I. No. 14 of 2008) has no publicly digitized primary print; the
+        Zambia Revenue Authority Practice Note No. 1/2008 capture is its
+        verbatim official reproduction, including the commencement date
+        of 1 April 2008. The Value Added Tax (Amendment) Act, 2024 does
+        not amend section 9, so the rate stands for the 2025 charge year.
+  summary: |-
+    Value Added Tax Act (Cap. 331): section 9(1) charges tax on the
+    taxable value of a taxable supply at the prescribed rate; section
+    9(3) sets the statutory default rate at seventeen and a half per
+    centum unless the Minister, by statutory order, determines a lower
+    rate. The operative standard rate is sixteen per centum, determined
+    by the Value Added Tax (Rate of Tax) Order, 2008 (S.I. No. 14 of
+    2008, in effect 1 April 2008), whose primary print is not publicly
+    digitized and is captured through the Zambia Revenue Authority
+    Practice Note No. 1/2008 verbatim reproduction. The Value Added Tax
+    (Amendment) Act, 2024 does not touch section 9, so the sixteen
+    percent standard rate stands for the 2025 charge year.
+rules:
+  - name: vat_statutory_default_rate
+    kind: parameter
+    dtype: Rate
+    source: Value Added Tax Act (Cap. 331), section 9(3)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/cap-331/value-added-tax-act
+              excerpt: "The prescribed rate of tax shall be seventeen and a half per centum"
+    versions:
+      - effective_from: '1996-12-31'
+        formula: |-
+          0.175
+
+  - name: vat_standard_rate
+    kind: parameter
+    dtype: Rate
+    source: Value Added Tax (Rate of Tax) Order, 2008 (S.I. No. 14 of 2008), under section 9(3) of the Act
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
+              excerpt: "This amendment reduces the tax rate from seventeen and half per centum to sixteen per centum"
+    versions:
+      - effective_from: '2008-04-01'
+        formula: |-
+          0.16
+
+  - name: vat_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Value Added Tax Act (Cap. 331), section 9(1), at the rate determined under section 9(3) by S.I. No. 14 of 2008
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/cap-331/value-added-tax-act
+              excerpt: "Tax on a taxable supply of goods or services shall be charged on their taxable value, at the prescribed rate of tax"
+    versions:
+      - effective_from: '2008-04-01'
+        formula: |-
+          vat_standard_rate * max(0, taxable_value)

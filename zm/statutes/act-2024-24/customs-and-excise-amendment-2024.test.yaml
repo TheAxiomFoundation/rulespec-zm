@@ -1,0 +1,86 @@
+# Companion fixtures for the CY2025 excise rows (rulespec-zm#1
+# instrument 8). Hand arithmetic per commodity; the cigarette input is
+# in milles (thousands of sticks) matching the statutory per-mille
+# duty. Petrol/diesel figures are the combined excise + fuel-levy
+# amounts carried by Second Schedule heading 9.
+
+- name: cy2025_opaque_beer
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#input.opaque_beer_litres: 100
+  output:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#opaque_beer_duty: 25
+
+- name: cy2025_wine
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#input.wine_taxable_value: 1000
+  output:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#wine_duty: 600
+
+- name: cy2025_spirits
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#input.spirits_taxable_value: 500
+  output:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#spirits_duty: 300
+
+- name: cy2025_clear_beer_statutory
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#input.clear_beer_taxable_value: 1000
+  output:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#clear_beer_statutory_duty: 600
+
+- name: cy2025_cigarettes
+  # 2 milles (2,000 sticks) x K452/mille = 904.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#input.cigarette_milles: 2
+  output:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#cigarette_duty: 904
+
+- name: cy2025_petrol
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#input.petrol_litres: 1000
+  output:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#petrol_duty: 2340
+
+- name: cy2025_diesel
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#input.diesel_litres: 1000
+  output:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#diesel_duty: 750
+
+- name: cy2025_zero_quantities
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#input.petrol_litres: 0
+  output:
+    zm:statutes/act-2024-24/customs-and-excise-amendment-2024#petrol_duty: 0
