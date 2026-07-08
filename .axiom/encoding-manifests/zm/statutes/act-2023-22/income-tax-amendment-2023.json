@@ -1,0 +1,42 @@
+{
+  "applied_files": [
+    {
+      "path": "zm/statutes/act-2023-22/income-tax-amendment-2023.test.yaml",
+      "sha256": "1f03551b0ac8507ce4c9b62c87fa0254e57caa6fb61b43ff1507404cab5e5061"
+    },
+    {
+      "path": "zm/statutes/act-2023-22/income-tax-amendment-2023.yaml",
+      "sha256": "82fb0385d2542c9d32b84f0d5fc2d02d674c495bca15eac1f7ea7a4f21256293"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "9759dd348474c15f9fca71253431db76b9273fc7",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode",
+    "version": "0.2.1192",
+    "version_commit": "9759dd348474c15f9fca71253431db76b9273fc7"
+  },
+  "axiom_encode_version": "0.2.1192",
+  "backend": "manual",
+  "citation": "zm:statutes/act-2023-22/income-tax-amendment-2023",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-08T14:37:02.023404+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp5b3x9zf3/sign-applied-files/zm/statutes/act-2023-22/income-tax-amendment-2023.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp5b3x9zf3",
+  "generated_output_sha256": "82fb0385d2542c9d32b84f0d5fc2d02d674c495bca15eac1f7ea7a4f21256293",
+  "generation_prompt_sha256": null,
+  "manual_exception": "#1",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "36acc85939cb2c16a7b878d86e06c5f10657c4af88f310d8f3f42a6744cbc405"
+  },
+  "tool": "axiom-encode sign-applied-files",
+  "trace_file": null,
+  "trace_sha256": null
+}

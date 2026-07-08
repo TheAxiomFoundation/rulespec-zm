@@ -1,0 +1,71 @@
+# Companion fixtures for the Act 22 of 2023 Charging Schedule paragraph
+# 2(1) individual rate rows (rulespec-zm#1 instrument 1). Hand
+# arithmetic on the statutory marginal structure; the 1,693,727.40 case
+# reproduces a live MicroZAMOD probe to the cent (monthly ttb_s
+# 141,143.95 -> tin_s 49,849.26 x 12) - comparison value only, never a
+# source. Charge year = calendar 2025.
+
+- name: cy2025_at_exempt_bound
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 61200
+  output:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#individual_income_tax: 0
+
+- name: cy2025_band_2_top
+  # 20% x (85,200 - 61,200) = 4,800.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 85200
+  output:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#individual_income_tax: 4800
+
+- name: cy2025_band_3_top
+  # 4,800 + 30% x (110,400 - 85,200) = 12,360.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 110400
+  output:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#individual_income_tax: 12360
+
+- name: cy2025_top_band_interior
+  # 12,360 + 37% x (200,000 - 110,400) = 45,512.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 200000
+  output:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#individual_income_tax: 45512
+
+- name: cy2025_microzamod_probe_cross_check
+  # 12,360 + 37% x (1,693,727.40 - 110,400) = 598,191.14 (2dp), the
+  # live MicroZAMOD ZM_2025 probe at monthly taxable base 141,143.95.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 1693727.40
+  output:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#individual_income_tax: 598191.138
+
+- name: cy2025_zero_income
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 0
+  output:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#individual_income_tax: 0

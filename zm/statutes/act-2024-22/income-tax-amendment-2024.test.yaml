@@ -1,0 +1,79 @@
+# Companion fixtures for the Act 22 of 2024 turnover-tax rows
+# (rulespec-zm#1 instrument 2): Ninth Schedule Part II (0 percent at or
+# below K12,000; 5 percent above K12,000 up to K5,000,000) with the
+# s.64A ceiling of five million kwacha. The table prescribes the rate
+# applicable to the whole turnover by slab; above the ceiling the
+# turnover-tax regime does not apply (income tax applies instead).
+# Charge year = calendar 2025. Hand arithmetic.
+
+- name: cy2025_free_band
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#input.annual_turnover: 10000
+  output:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#turnover_tax: 0
+
+- name: cy2025_free_bound_inclusive
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#input.annual_turnover: 12000
+  output:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#turnover_tax: 0
+
+- name: cy2025_just_above_free_bound
+  # 5% x 12,001 (rate on the whole turnover, slab semantics).
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#input.annual_turnover: 12001
+  output:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#turnover_tax: 600.05
+
+- name: cy2025_interior
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#input.annual_turnover: 100000
+  output:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#turnover_tax: 5000
+
+- name: cy2025_ceiling_inclusive
+  # "five million kwacha or less" - the regime applies at exactly 5m.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#input.annual_turnover: 5000000
+  output:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#turnover_tax: 250000
+
+- name: cy2025_above_ceiling_outside_regime
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#input.annual_turnover: 5000001
+  output:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#turnover_tax: 0
+
+- name: cy2025_zero_turnover
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#input.annual_turnover: 0
+  output:
+    zm:statutes/act-2024-22/income-tax-amendment-2024#turnover_tax: 0
