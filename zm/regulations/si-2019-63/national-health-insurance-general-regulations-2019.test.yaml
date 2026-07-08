@@ -1,0 +1,46 @@
+# Companion fixtures for the S.I. No. 63 of 2019 NHIMA contribution
+# rates (rulespec-zm#1 instruments 5-6): Third Schedule, employee 1% of
+# basic salary + employer 1%, monthly, uncapped. Employee and employer
+# outputs sit in separate cases (different derived entities). The
+# 144,295.10 case reproduces the live MicroZAMOD ZM_2025 probe
+# (tsceehl_s 1,442.95) - comparison value only, never a source.
+
+- name: monthly_contribution_10000_employee
+  period:
+    period_kind: month
+    start: '2025-01-01'
+    end: '2025-01-31'
+  input:
+    zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#input.basic_salary: 10000
+  output:
+    zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employee_monthly_contribution_amount: 100
+
+- name: monthly_contribution_10000_employer
+  period:
+    period_kind: month
+    start: '2025-01-01'
+    end: '2025-01-31'
+  input:
+    zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#input.basic_salary: 10000
+  output:
+    zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employer_monthly_contribution_amount: 100
+
+- name: monthly_contribution_microzamod_probe_employee
+  period:
+    period_kind: month
+    start: '2025-01-01'
+    end: '2025-01-31'
+  input:
+    zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#input.basic_salary: 144295.10
+  output:
+    zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employee_monthly_contribution_amount: 1442.951
+
+- name: monthly_zero_salary_employee
+  period:
+    period_kind: month
+    start: '2025-01-01'
+    end: '2025-01-31'
+  input:
+    zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#input.basic_salary: 0
+  output:
+    zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employee_monthly_contribution_amount: 0

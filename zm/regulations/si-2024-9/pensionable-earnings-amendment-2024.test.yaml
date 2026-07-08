@@ -1,0 +1,69 @@
+# Companion fixtures for the S.I. No. 9 of 2024 NAPSA schedules
+# (rulespec-zm#1 instruments 3-4): 5% employee + 5% employer shares of
+# total pensionable earnings, monthly, with the CY2024 social security
+# ceiling of K29,816.00. At the ceiling each share is K1,490.80 - the
+# ZM_2024 MicroZAMOD cap value exactly. Hand arithmetic.
+
+- name: cy2024_below_ceiling
+  period:
+    period_kind: month
+    start: '2024-01-01'
+    end: '2024-01-31'
+  input:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#input.monthly_earnings: 10000
+  output:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employee_contribution: 500
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#monthly_pensionable_earnings: 10000
+
+- name: cy2024_below_ceiling_employer
+  period:
+    period_kind: month
+    start: '2024-01-01'
+    end: '2024-01-31'
+  input:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#input.monthly_earnings: 10000
+  output:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employer_contribution: 500
+
+- name: cy2024_at_ceiling
+  period:
+    period_kind: month
+    start: '2024-01-01'
+    end: '2024-01-31'
+  input:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#input.monthly_earnings: 29816
+  output:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employee_contribution: 1490.80
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#monthly_pensionable_earnings: 29816
+
+- name: cy2024_above_ceiling_capped
+  period:
+    period_kind: month
+    start: '2024-01-01'
+    end: '2024-01-31'
+  input:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#input.monthly_earnings: 40000
+  output:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employee_contribution: 1490.80
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#monthly_pensionable_earnings: 29816
+
+- name: cy2024_above_ceiling_capped_employer
+  period:
+    period_kind: month
+    start: '2024-01-01'
+    end: '2024-01-31'
+  input:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#input.monthly_earnings: 40000
+  output:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employer_contribution: 1490.80
+
+- name: cy2024_zero_earnings
+  period:
+    period_kind: month
+    start: '2024-01-01'
+    end: '2024-01-31'
+  input:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#input.monthly_earnings: 0
+  output:
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employee_contribution: 0
+    zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#monthly_pensionable_earnings: 0

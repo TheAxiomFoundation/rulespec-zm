@@ -1,0 +1,82 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
+  summary: |-
+    Regulation 5 requires the Authority to issue a membership card within sixty days of Form I registration; regulation 6 requires replacement of a lost, defaced, or destroyed card within thirty days on payment of the Second Schedule fee. Regulation 9 and the Third Schedule set employee, employer, and self-employed contribution rates at 1% monthly, due by the 10th of the following month. Regulation 19 caps yearly expenditure on section 41(2)(b) and (c) activities at ten percent of Fund monies. The Second Schedule sets replacement card and accreditation fee units; the Fourth Schedule lists included benefit-package services and exclusions, including long-term inpatient nursing care over 90 days.
+rules:
+  - name: employee_contribution_rate
+    kind: parameter
+    dtype: Rate
+    period: Month
+    source: Third Schedule, row 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
+              excerpt: "1. Employee Payroll based 1% of Monthly 10th of the basic salary"
+    versions:
+      - effective_from: '2019-10-01'
+        formula: |-
+          0.01
+
+  - name: employer_contribution_rate
+    kind: parameter
+    dtype: Rate
+    period: Month
+    source: Third Schedule, row 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
+              excerpt: "2. Employer Payroll based 1% of Monthly 10th of the basic salary"
+    versions:
+      - effective_from: '2019-10-01'
+        formula: |-
+          0.01
+
+  - name: employee_monthly_contribution_amount
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    source: regulation 9 and Third Schedule, row 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
+              excerpt: "1. Employee Payroll based 1% of Monthly 10th of the basic salary"
+    versions:
+      - effective_from: '2019-10-01'
+        formula: |-
+          max(0, basic_salary) * employee_contribution_rate
+
+  - name: employer_monthly_contribution_amount
+    kind: derived
+    entity: Employer
+    dtype: Money
+    period: Month
+    source: regulation 9 and Third Schedule, row 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
+              excerpt: "2. Employer Payroll based 1% of Monthly 10th of the basic salary"
+    versions:
+      - effective_from: '2019-10-01'
+        formula: |-
+          max(0, basic_salary) * employer_contribution_rate

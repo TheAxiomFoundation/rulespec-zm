@@ -1,0 +1,110 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+  summary: |-
+    The Regulations are deemed to have come into operation on 1st January, 2024. The schedules set the 2024 National Average Monthly amount at K7,454.00, the Social Security Ceiling at K29,816.00, minimum total monthly contributions at K1.50, and maximum total monthly contributions at K2,981.50. The contribution table notes that the employee's and employer's share shall each be calculated as five percent of the employee's total pensionable earnings and that earnings and contribution amounts are not rounded before applying the percentage.
+rules:
+  - name: social_security_ceiling_monthly
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    period: Month
+    source: Second Schedule, Social Security Ceiling, 1 January 2024 to 31 December 2024
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+              excerpt: "Social Security Ceiling Period K29,816.00 1st January, 2024 - 31st December, 2024"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          29816
+
+  - name: napsa_share_rate
+    kind: parameter
+    dtype: Rate
+    period: Month
+    source: Fifth Schedule notes to contribution tables
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+              excerpt: "The amounts of the employee’s and employer’s share shall be calculated respectively as five percent of the employee’s total pensionbale earnings."
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.05
+
+  - name: monthly_pensionable_earnings
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Month
+    source: Second Schedule Social Security Ceiling and Fifth Schedule notes
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+              excerpt: "Social Security Ceiling Period K29,816.00 1st January, 2024 - 31st December, 2024"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+              excerpt: "employee’s total pensionable earnings on which contributions are calculated"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          min(max(0, monthly_earnings), social_security_ceiling_monthly)
+
+  - name: napsa_employee_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Month
+    source: Fifth Schedule notes to contribution tables
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+              excerpt: "The amounts of the employee’s and employer’s share shall be calculated respectively as five percent of the employee’s total pensionbale earnings."
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          napsa_share_rate * monthly_pensionable_earnings
+
+  - name: napsa_employer_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Month
+    source: Fifth Schedule notes to contribution tables
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+              excerpt: "The amounts of the employee’s and employer’s share shall be calculated respectively as five percent of the employee’s total pensionbale earnings."
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          napsa_share_rate * monthly_pensionable_earnings
