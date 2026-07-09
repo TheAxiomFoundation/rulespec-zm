@@ -1,0 +1,40 @@
+# Companion fixtures for the SCT standing transfer values
+# (rulespec-zm#1 instrument 9). Eligibility is an input; the values are
+# the encoded surface. Cross-checked live against MicroZAMOD ZM_2024
+# (bsa_s 200/month base, 400/month severe-disability - the statement's
+# standing scheme exactly); the ZM_2025 system's 400/600 annualizes the
+# time-bounded drought measures (finding 6, dispositioned in the
+# zm-sct suite comparison).
+
+- name: beneficiary_household
+  period:
+    period_kind: month
+    start: '2024-01-01'
+    end: '2024-01-31'
+  input:
+    zm:policies/mcdss-sct/ministerial-statement-transfer-values#input.sct_beneficiary_household: 1
+    zm:policies/mcdss-sct/ministerial-statement-transfer-values#input.severe_disability_member: 0
+  output:
+    zm:policies/mcdss-sct/ministerial-statement-transfer-values#sct_monthly_transfer: 200
+
+- name: beneficiary_household_severe_disability
+  period:
+    period_kind: month
+    start: '2024-01-01'
+    end: '2024-01-31'
+  input:
+    zm:policies/mcdss-sct/ministerial-statement-transfer-values#input.sct_beneficiary_household: 1
+    zm:policies/mcdss-sct/ministerial-statement-transfer-values#input.severe_disability_member: 1
+  output:
+    zm:policies/mcdss-sct/ministerial-statement-transfer-values#sct_monthly_transfer: 400
+
+- name: non_beneficiary
+  period:
+    period_kind: month
+    start: '2024-01-01'
+    end: '2024-01-31'
+  input:
+    zm:policies/mcdss-sct/ministerial-statement-transfer-values#input.sct_beneficiary_household: 0
+    zm:policies/mcdss-sct/ministerial-statement-transfer-values#input.severe_disability_member: 0
+  output:
+    zm:policies/mcdss-sct/ministerial-statement-transfer-values#sct_monthly_transfer: 0
