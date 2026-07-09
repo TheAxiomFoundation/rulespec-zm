@@ -1,0 +1,38 @@
+{
+  "applied_files": [
+    {
+      "path": "programs/zm/income-tax/cy-2025.yaml",
+      "sha256": "ec5d027e58c0604bc8d73030594977dd7e24eff9c524777565e5ad4a962469e7"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "177867c18d73e9d0e33ada9616d23bc1c36cbac0",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode",
+    "version": "0.2.1195",
+    "version_commit": "177867c18d73e9d0e33ada9616d23bc1c36cbac0"
+  },
+  "axiom_encode_version": "0.2.1195",
+  "backend": "manual",
+  "citation": "zm:programs/zm/income-tax/cy-2025",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-09T00:58:01.045815+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp9bwrv77a/sign-applied-files/programs/zm/income-tax/cy-2025.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp9bwrv77a",
+  "generated_output_sha256": "ec5d027e58c0604bc8d73030594977dd7e24eff9c524777565e5ad4a962469e7",
+  "generation_prompt_sha256": null,
+  "manual_exception": "composition",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "07bf183a34a44fa03fb886886e38ca2361427dd12928b9fbba80f234d923590e"
+  },
+  "tool": "axiom-encode sign-applied-files",
+  "trace_file": null,
+  "trace_sha256": null
+}

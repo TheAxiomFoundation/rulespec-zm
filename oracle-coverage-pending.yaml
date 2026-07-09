@@ -8,7 +8,7 @@
 # Maintained by: axiom-encode oracle-coverage-pending sync.
 version: 1
 issue: https://github.com/TheAxiomFoundation/rulespec-zm/issues/1
-ceiling: 43
+ceiling: 47
 entries:
   - legal_id: zm:policies/mcdss-sct/ministerial-statement-transfer-values#sct_monthly_transfer
     source: manual
@@ -17,6 +17,12 @@ entries:
     source: manual
     since: 2026-07-08
   - legal_id: zm:policies/mcdss-sct/ministerial-statement-transfer-values#sct_severe_disability_monthly_transfer_value
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:programs/income-tax/cy-2025#pilot_worker_disposable_income
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:programs/income-tax/cy-2025#pilot_worker_income_tax
     source: manual
     since: 2026-07-08
   - legal_id: zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employee_contribution_rate
@@ -137,5 +143,11 @@ entries:
     source: manual
     since: 2026-07-08
   - legal_id: zm:statutes/cap-331/value-added-tax-act#vat_statutory_default_rate
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax
     source: manual
     since: 2026-07-08

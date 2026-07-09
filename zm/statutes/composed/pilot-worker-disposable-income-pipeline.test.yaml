@@ -1,0 +1,85 @@
+# Companion fixtures for the composed single-employee disposable-income
+# pipeline (rulespec-zm#1 capstone). The imported Charging Schedule tax
+# reads the rate module's individual_income input (imports do not
+# rebind); the contributions are the composed module's own inputs. The
+# CY2025 statutory tax base is GROSS (no employee contribution
+# deduction - Act 22 of 2024 s.4); MicroZAMOD ZM_2025 taxes the net
+# base instead (finding 1), so these cases assert the STATUTORY chain.
+# NAPSA inputs use the CY2025 administrative ceiling values where they
+# bind (20,498.40/yr = 12 x 1,708.20).
+
+- name: cy2025_nil_zone
+  # 40,000 gross: tax 0; napsa 2,000; nhima 400; dispy 37,600.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 40000
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.napsa_employee_contribution: 2000
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.nhima_employee_contribution: 400
+  output:
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 37600
+
+- name: cy2025_exempt_bound
+  # 61,200 gross: tax 0; napsa 3,060; nhima 612; dispy 57,528.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 61200
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.napsa_employee_contribution: 3060
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.nhima_employee_contribution: 612
+  output:
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 57528
+
+- name: cy2025_taxed_interior
+  # 240,000 gross: tax 12,360 + 37% x 129,600 = 60,312; napsa 12,000;
+  # nhima 2,400; dispy 165,288.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 240000
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.napsa_employee_contribution: 12000
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.nhima_employee_contribution: 2400
+  output:
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax: 60312
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 165288
+
+- name: cy2025_high_income_napsa_capped
+  # 600,000 gross: tax 12,360 + 37% x 489,600 = 193,512; napsa at the
+  # CY2025 administrative cap 20,498.40; nhima 6,000; dispy 379,989.60.
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 600000
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.napsa_employee_contribution: 20498.40
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.nhima_employee_contribution: 6000
+  output:
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax: 193512
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 379989.60
+
+- name: cy2025_zero_everything
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/act-2023-22/income-tax-amendment-2023#input.individual_income: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.benefits_received: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.napsa_employee_contribution: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#input.nhima_employee_contribution: 0
+  output:
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_income_tax: 0
+    zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income: 0
