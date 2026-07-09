@@ -1,0 +1,42 @@
+{
+  "applied_files": [
+    {
+      "path": "zm/statutes/composed/pilot-worker-disposable-income-pipeline.test.yaml",
+      "sha256": "aacb6664b24474e5bbc70a8b0a28e52929f6aa8a3aafa023762816fb317ce219"
+    },
+    {
+      "path": "zm/statutes/composed/pilot-worker-disposable-income-pipeline.yaml",
+      "sha256": "d089f690708d93efd6301d58214715da0821a30c0934784bc1b471fd9039c530"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "177867c18d73e9d0e33ada9616d23bc1c36cbac0",
+    "dirty_tracked": false,
+    "root": "/Users/maxghenis/TheAxiomFoundation/axiom-encode",
+    "version": "0.2.1195",
+    "version_commit": "177867c18d73e9d0e33ada9616d23bc1c36cbac0"
+  },
+  "axiom_encode_version": "0.2.1195",
+  "backend": "manual",
+  "citation": "zm:statutes/composed/pilot-worker-disposable-income-pipeline",
+  "context_manifest_file": null,
+  "context_manifest_sha256": null,
+  "generated_at": "2026-07-09T00:58:01.046675+00:00",
+  "generated_output_file": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp9bwrv77a/sign-applied-files/zm/statutes/composed/pilot-worker-disposable-income-pipeline.yaml",
+  "generated_output_root": "/var/folders/9l/_wztzgbx7mgc7l1r0416cy7m0000gn/T/tmp9bwrv77a",
+  "generated_output_sha256": "d089f690708d93efd6301d58214715da0821a30c0934784bc1b471fd9039c530",
+  "generation_prompt_sha256": null,
+  "manual_exception": "composition",
+  "model": "",
+  "run_id": null,
+  "runner": "manual-attestation",
+  "schema_version": "axiom-encode/applied-rulespec/v1",
+  "signature": {
+    "algorithm": "hmac-sha256",
+    "key_id": "axiom-encode-apply-v1",
+    "value": "5f7332e78a1653483a462c3c506f70bcd30adbf3151fbd5843c1215d81771901"
+  },
+  "tool": "axiom-encode sign-applied-files",
+  "trace_file": null,
+  "trace_sha256": null
+}

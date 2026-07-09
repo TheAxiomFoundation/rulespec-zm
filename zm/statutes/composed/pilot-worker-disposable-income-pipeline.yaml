@@ -1,0 +1,82 @@
+imports:
+  - zm:statutes/act-2023-22/income-tax-amendment-2023#individual_income_tax
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_paths:
+      - zm/statute/act-2023-22/income-tax-amendment-2023
+      - zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+      - zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
+    upstream_source_check:
+      status: composed_from_grounded_modules
+      checked_paths:
+        - zm/statute/act-2023-22/income-tax-amendment-2023
+        - zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+        - zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
+      rationale: |-
+        Composed identity over already-grounded modules: the Act 22 of
+        2023 Charging Schedule income tax (imported; applied to the
+        employee's income - the CY2025 statute contains no employee
+        deduction for NAPSA or NHIMA contributions, Act 22 of 2024 s.4
+        having made the approved-fund deduction employer-only), less the
+        employee NAPSA and NHIMA contributions supplied as inputs (their
+        statutory shares are encoded in the cited regulation modules;
+        the CY2025 NAPSA ceiling is an administrative determination
+        under the Cap. 256 s.19 formula with no dedicated instrument,
+        so the composed pipeline takes the contribution amounts rather
+        than re-deriving a year-specific cap).
+  summary: |-
+    Composed single-employee disposable income for the 2025 charge
+    year, mirroring MicroZAMOD ils_dispy: gross employment income plus
+    benefits received, less the Act 22 of 2023 Charging Schedule
+    individual income tax on that income (the statutory base is gross -
+    no employee contribution deduction exists in CY2025), less the
+    employee NAPSA and NHIMA contributions (supplied as inputs; their
+    rates are encoded in the cited regulation modules).
+rules:
+  - name: pilot_worker_income_tax
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Imported Act 22 of 2023 Charging Schedule paragraph 2(1) income tax on the employee's income (gross - no employee contribution deduction in CY2025)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
+              excerpt: "on the balance of so much of an"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          individual_income_tax
+
+  - name: pilot_worker_disposable_income
+    kind: derived
+    entity: Person
+    dtype: Money
+    unit: ZMW
+    period: Year
+    source: Composed identity - income plus benefits less income tax less the employee NAPSA share (five percent of pensionable earnings, S.I. 9 of 2024) and NHIMA contribution (1% of basic salary, S.I. 63 of 2019), mirroring MicroZAMOD ils_dispy
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
+              excerpt: "five percent of the employee’s total pensionbale earnings"
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
+              excerpt: "1. Employee Payroll based 1% of Monthly 10th of the basic salary"
+    versions:
+      - effective_from: '2025-01-01'
+        formula: |-
+          individual_income + max(0, benefits_received) - pilot_worker_income_tax - max(0, napsa_employee_contribution) - max(0, nhima_employee_contribution)
