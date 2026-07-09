@@ -8,8 +8,17 @@
 # Maintained by: axiom-encode oracle-coverage-pending sync.
 version: 1
 issue: https://github.com/TheAxiomFoundation/rulespec-zm/issues/1
-ceiling: 40
+ceiling: 43
 entries:
+  - legal_id: zm:policies/mcdss-sct/ministerial-statement-transfer-values#sct_monthly_transfer
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:policies/mcdss-sct/ministerial-statement-transfer-values#sct_monthly_transfer_value
+    source: manual
+    since: 2026-07-08
+  - legal_id: zm:policies/mcdss-sct/ministerial-statement-transfer-values#sct_severe_disability_monthly_transfer_value
+    source: manual
+    since: 2026-07-08
   - legal_id: zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employee_contribution_rate
     source: manual
     since: 2026-07-08
