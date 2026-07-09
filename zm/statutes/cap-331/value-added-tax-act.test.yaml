@@ -1,0 +1,34 @@
+# Companion fixtures for the VAT standard rate (rulespec-zm#1
+# instrument 7): s.9(1) charge on taxable value at the prescribed
+# rate; 16% per S.I. No. 14 of 2008 (via the ZRA PN 1/2008 verified
+# reproduction). Hand arithmetic.
+
+- name: cy2025_small_supply
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/cap-331/value-added-tax-act#input.taxable_value: 1000
+  output:
+    zm:statutes/cap-331/value-added-tax-act#vat_amount: 160
+
+- name: cy2025_larger_supply
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/cap-331/value-added-tax-act#input.taxable_value: 118000
+  output:
+    zm:statutes/cap-331/value-added-tax-act#vat_amount: 18880
+
+- name: cy2025_zero_value
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  input:
+    zm:statutes/cap-331/value-added-tax-act#input.taxable_value: 0
+  output:
+    zm:statutes/cap-331/value-added-tax-act#vat_amount: 0
