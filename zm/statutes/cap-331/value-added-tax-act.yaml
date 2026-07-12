@@ -3,26 +3,7 @@ module:
   proof_validation:
     required: true
   source_verification:
-    corpus_citation_paths:
-      - zm/statute/cap-331/value-added-tax-act
-      - zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - zm/statute/cap-331/value-added-tax-act
-        - zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
-      rationale: |-
-        The sixteen percent standard rate is set by statutory order under
-        the express section 9(3) delegation ("unless the Minister... by
-        statutory order, determines a lower rate") in the captured Value
-        Added Tax Act (Cap. 331) - the higher statutory authority was
-        checked first and carries the default rate and the delegation.
-        The order itself (Value Added Tax (Rate of Tax) Order, 2008,
-        S.I. No. 14 of 2008) has no publicly digitized primary print; the
-        Zambia Revenue Authority Practice Note No. 1/2008 capture is its
-        verbatim official reproduction, including the commencement date
-        of 1 April 2008. The Value Added Tax (Amendment) Act, 2024 does
-        not amend section 9, so the rate stands for the 2025 charge year.
+    corpus_citation_path: zm/statute/cap-331/value-added-tax-act
   summary: |-
     Value Added Tax Act (Cap. 331): section 9(1) charges tax on the
     taxable value of a taxable supply at the prescribed rate; section

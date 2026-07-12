@@ -5,28 +5,7 @@ module:
   proof_validation:
     required: true
   source_verification:
-    corpus_citation_paths:
-      - zm/statute/act-2023-22/income-tax-amendment-2023
-      - zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
-      - zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
-    upstream_source_check:
-      status: composed_from_grounded_modules
-      checked_paths:
-        - zm/statute/act-2023-22/income-tax-amendment-2023
-        - zm/regulation/si-2024-9/pensionable-earnings-amendment-2024
-        - zm/regulation/si-2019-63/national-health-insurance-general-regulations-2019
-      rationale: |-
-        Composed identity over already-grounded modules: the Act 22 of
-        2023 Charging Schedule income tax (imported; applied to the
-        employee's income - the CY2025 statute contains no employee
-        deduction for NAPSA or NHIMA contributions, Act 22 of 2024 s.4
-        having made the approved-fund deduction employer-only), less the
-        employee NAPSA and NHIMA contributions supplied as inputs (their
-        statutory shares are encoded in the cited regulation modules;
-        the CY2025 NAPSA ceiling is an administrative determination
-        under the Cap. 256 s.19 formula with no dedicated instrument,
-        so the composed pipeline takes the contribution amounts rather
-        than re-deriving a year-specific cap).
+    corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
   summary: |-
     Composed single-employee disposable income for the 2025 charge
     year, mirroring MicroZAMOD ils_dispy: gross employment income plus

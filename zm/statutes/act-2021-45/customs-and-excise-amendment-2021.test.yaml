@@ -1,0 +1,15 @@
+- name: opaque_beer_rate
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  output:
+    zm:statutes/act-2021-45/customs-and-excise-amendment-2021#opaque_beer_duty_per_litre: 0.25
+
+- name: spirits_rate
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  output:
+    zm:statutes/act-2021-45/customs-and-excise-amendment-2021#spirits_duty_rate: 0.60

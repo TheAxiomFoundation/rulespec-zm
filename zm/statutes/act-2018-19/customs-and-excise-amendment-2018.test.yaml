@@ -1,0 +1,15 @@
+- name: wine_rate
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  output:
+    zm:statutes/act-2018-19/customs-and-excise-amendment-2018#wine_duty_rate: 0.60
+
+- name: clear_beer_statutory_rate
+  period:
+    period_kind: tax_year
+    start: '2025-01-01'
+    end: '2025-12-31'
+  output:
+    zm:statutes/act-2018-19/customs-and-excise-amendment-2018#clear_beer_statutory_duty_rate: 0.60
