@@ -1,36 +1,17 @@
+imports:
+  - zm:statutes/act-2018-19/customs-and-excise-amendment-2018#wine_duty_rate
+  - zm:statutes/act-2018-19/customs-and-excise-amendment-2018#clear_beer_statutory_duty_rate
+  - zm:statutes/act-2021-45/customs-and-excise-amendment-2021#opaque_beer_duty_per_litre
+  - zm:statutes/act-2021-45/customs-and-excise-amendment-2021#spirits_duty_rate
 format: rulespec/v1
 module:
   proof_validation:
     required: true
   source_verification:
-    corpus_citation_paths:
-      - zm/statute/act-2024-24/customs-and-excise-amendment-2024
-      - zm/statute/act-2023-25/customs-and-excise-amendment-2023
-      - zm/statute/act-2022-25/customs-and-excise-amendment-2022
-      - zm/statute/act-2021-45/customs-and-excise-amendment-2021
-      - zm/statute/act-2018-19/customs-and-excise-amendment-2018
-      - zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - zm/statute/act-2024-24/customs-and-excise-amendment-2024
-        - zm/statute/act-2023-25/customs-and-excise-amendment-2023
-        - zm/statute/act-2022-25/customs-and-excise-amendment-2022
-        - zm/statute/act-2021-45/customs-and-excise-amendment-2021
-        - zm/statute/act-2018-19/customs-and-excise-amendment-2018
-        - zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
-      rationale: |-
-        Every encoded rate row comes from the captured Customs and Excise
-        (Amendment) Act prints - the higher statutory authority was
-        checked first and carries all seven parameters verbatim. The ZRA
-        Practice Note No. 1/2024 policy capture is cited only for the
-        clear-beer suspension layer (Customs and Excise (Suspension)
-        (Clear Beer) Regulations, S.I. Nos. 66 and 71 of 2023, in effect
-        1 January 2024 and self-revoking 31 December 2026), whose primary
-        gazette prints are not publicly digitized; the practice note is
-        their verbatim official reproduction. The suspension is
-        documented in the module summary and is not encoded as the
-        statutory rate.
+    corpus_citation_path: zm/statute/act-2024-24/customs-and-excise-amendment-2024
+  deferred_outputs:
+    - output: zm:statutes/act-2024-24/customs-and-excise-amendment-2024/b#unencoded_excise_offence_penalty
+      reason: The offence penalty is outside this module's commodity excise calculation surface.
   summary: |-
     Customs and Excise Act (Cap. 322) Second Schedule excise rows in
     force for the 2025 charge year, assembled from the amendment chain:
@@ -54,90 +35,6 @@ module:
     beer excluded) - the time-bounded suspension layer is documented
     here and not encoded as the statutory rate.
 rules:
-  - name: opaque_beer_duty_per_litre
-    kind: parameter
-    dtype: Money
-    unit: ZMW
-    source: Customs and Excise (Amendment) Act, 2021 (Act No. 45 of 2021), Second Schedule heading 4, subheading 2203.00.10
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: amount
-            source:
-              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
-              excerpt: "the substitution therefor of the figure “k0.25/ltr”"
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          0.25
-
-  - name: wine_duty_rate
-    kind: parameter
-    dtype: Rate
-    source: Customs and Excise (Amendment) Act, 2018 (Act No. 19 of 2018), Second Schedule heading 5
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
-              excerpt: "Wine of fresh grapes"
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
-              excerpt: "60%"
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          0.60
-
-  - name: spirits_duty_rate
-    kind: parameter
-    dtype: Rate
-    source: Customs and Excise (Amendment) Act, 2021 (Act No. 45 of 2021), Second Schedule heading 6, subheading 2207.10.00 (with 2207.20.10 per Act 25 of 2022 and 2207.20.90 per Act 25 of 2023)
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
-              excerpt: "2207.10.00"
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
-              excerpt: "the substitution therefor of the figure “60%”"
-    versions:
-      - effective_from: '2022-01-01'
-        formula: |-
-          0.60
-
-  - name: clear_beer_statutory_duty_rate
-    kind: parameter
-    dtype: Rate
-    source: Customs and Excise (Amendment) Act, 2018 (Act No. 19 of 2018), Second Schedule heading 4, subheading 2203.00.90 (suspended to feedstock rates by S.I. 66/71 of 2023 through 31 December 2026)
-    metadata:
-      proof:
-        atoms:
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
-              excerpt: "Other, including ale, lager and stout 2203.00.90"
-          - path: versions[0].formula
-            kind: parameter
-            source:
-              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
-              excerpt: "60%"
-    versions:
-      - effective_from: '2019-01-01'
-        formula: |-
-          0.60
-
   - name: cigarette_duty_per_mille
     kind: parameter
     dtype: Money

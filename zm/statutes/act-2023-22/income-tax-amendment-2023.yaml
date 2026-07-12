@@ -39,7 +39,7 @@ rules:
             kind: amount
             source:
               corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
-              excerpt: "exceeds sixty-one thousand two hundred Kwacha"
+              excerpt: "exceeds sixty- one thousand two hundred Kwacha"
     versions:
       - effective_from: '2024-01-01'
         formula: |-
@@ -189,7 +189,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: zm/statute/act-2023-22/income-tax-amendment-2023
-              excerpt: "on the balance of so much of an individual's income as exceeds..."
+              excerpt: "on the balance of so much of an individual’s income as exceeds"
     versions:
       - effective_from: '2024-01-01'
         formula: |-

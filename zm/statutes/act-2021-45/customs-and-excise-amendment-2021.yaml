@@ -1,0 +1,63 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+  deferred_outputs:
+    - output: zm:statutes/act-2021-45/customs-and-excise-amendment-2021/o#unencoded_customs_schedule_amendments
+      reason: The unrelated customs-tariff description amendments are outside this module's excise-rate surface.
+    - output: zm:statutes/act-2021-45/customs-and-excise-amendment-2021/c#unencoded_customs_schedule_substitutions
+      reason: The unrelated customs-tariff schedule substitutions are outside this module's excise-rate surface.
+    - output: zm:statutes/act-2021-45/customs-and-excise-amendment-2021/d#unencoded_customs_schedule_text_changes
+      reason: The unrelated customs-tariff textual amendments are outside this module's excise-rate surface.
+    - output: zm:statutes/act-2021-45/customs-and-excise-amendment-2021/a#unencoded_customs_schedule_definitions
+      reason: The unrelated customs-tariff definitions are outside this module's excise-rate surface.
+    - output: zm:statutes/act-2021-45/customs-and-excise-amendment-2021/l#unencoded_customs_schedule_insertions
+      reason: The unrelated customs-tariff insertions are outside this module's excise-rate surface.
+    - output: zm:statutes/act-2021-45/customs-and-excise-amendment-2021/g#unencoded_customs_schedule_headings
+      reason: The unrelated customs-tariff heading amendments are outside this module's excise-rate surface.
+  summary: |-
+    Customs and Excise (Amendment) Act, 2021 Second Schedule substitutions
+    used by the CY2025 excise composition: opaque beer at K0.25 per litre
+    and the specified ethyl-alcohol and spirits row at 60 percent.
+rules:
+  - name: opaque_beer_duty_per_litre
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Customs and Excise (Amendment) Act, 2021 (Act No. 45 of 2021), Second Schedule heading 4, subheading 2203.00.10
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+              excerpt: "the substitution therefor of the figure “k0.25/ltr”"
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          0.25
+
+  - name: spirits_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Customs and Excise (Amendment) Act, 2021 (Act No. 45 of 2021), Second Schedule heading 6, subheading 2207.10.00 (with 2207.20.10 per Act 25 of 2022 and 2207.20.90 per Act 25 of 2023)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+              excerpt: "2207.10.00"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2021-45/customs-and-excise-amendment-2021
+              excerpt: "the substitution therefor of the figure “60%”"
+    versions:
+      - effective_from: '2022-01-01'
+        formula: |-
+          0.60

@@ -4,29 +4,6 @@ module:
     required: true
   source_verification:
     corpus_citation_path: zm/policy/mcdss-sct/ministerial-statement-transfer-values
-    upstream_source_check:
-      status: official_parameter_source
-      checked_paths:
-        - zm/statute/act-2024-29/appropriation-2024
-        - zm/policy/mcdss-sct/ministerial-statement-transfer-values
-      rationale: |-
-        The Appropriation Act, 2024 (Act No. 29 of 2024) is the checked
-        statutory higher authority: it authorizes the FY2025 expenditure
-        from the Consolidated Fund under which the Ministry of Community
-        Development and Social Services funds the programme, and it
-        prescribes no transfer value. The Social Cash Transfer is
-        administratively set by the Ministry
-        of Community Development and Social Services; no Act or
-        statutory instrument prescribes the transfer value. The captured
-        MCDSS Ministerial Statement to the National Assembly is the
-        official programme documentation for the standing values encoded
-        here (K200 per month per household, doubled to K400 for a
-        household with a member with severe disability, paid bi-monthly).
-        The temporary drought-response measures announced in the 2025
-        Budget Address (a 12-month K200 top-up to regular beneficiaries
-        and the K400 Drought Emergency Social Cash Transfer, both ending
-        June 2025) are time-bounded emergency programmes, not the
-        standing scheme, and are not encoded.
   summary: |-
     Social Cash Transfer standing transfer values (MCDSS Ministerial
     Statement): households without members with disabilities receive
@@ -69,7 +46,7 @@ rules:
             kind: amount
             source:
               corpus_citation_path: zm/policy/mcdss-sct/ministerial-statement-transfer-values
-              excerpt: "households with a member with severe disability receive k400 per month per household"
+              excerpt: "member with severe disability receive k400 per month per household"
     versions:
       - effective_from: '2022-01-01'
         formula: |-
@@ -89,7 +66,7 @@ rules:
             kind: formula
             source:
               corpus_citation_path: zm/policy/mcdss-sct/ministerial-statement-transfer-values
-              excerpt: "receive K200 per month per household paid every two months at K400 while households with a member with severe disability receive k400 per month"
+              excerpt: "households without members with disabilities receive K200 per month per household paid every two months at K400"
     versions:
       - effective_from: '2022-01-01'
         formula: |-

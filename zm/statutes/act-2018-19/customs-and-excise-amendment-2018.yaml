@@ -1,0 +1,53 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+  summary: |-
+    Customs and Excise (Amendment) Act, 2018 Second Schedule rates used by
+    the CY2025 excise composition: wine and clear beer at 60 percent.
+rules:
+  - name: wine_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Customs and Excise (Amendment) Act, 2018 (Act No. 19 of 2018), Second Schedule heading 5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "Wine of fresh grapes"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "60%"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          0.60
+
+  - name: clear_beer_statutory_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Customs and Excise (Amendment) Act, 2018 (Act No. 19 of 2018), Second Schedule heading 4, subheading 2203.00.90 (suspended to feedstock rates by S.I. 66/71 of 2023 through 31 December 2026)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "Other, including ale, lager and stout 2203.00.90"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2018-19/customs-and-excise-amendment-2018
+              excerpt: "60%"
+    versions:
+      - effective_from: '2019-01-01'
+        formula: |-
+          0.60
