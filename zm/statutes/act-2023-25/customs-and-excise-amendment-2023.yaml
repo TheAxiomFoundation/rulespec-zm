@@ -1,0 +1,52 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+    source_sha256: 79e604fe0f95da4de21519d25a05ebfa0b8fb301b9ad3826d1205b90fa73a6cf
+  summary: 'Section 3 inserts section 22(3): “a pilot in charge of an aircraft shall
+    before, or immediately after, departure of the aircraft deliver, electronically
+    to the customs service division, a cargo manifest.” Section 9 inserts section
+    69(2): “a monetary deposit or security guarantee shall be required where the goods
+    removed from a warehouse are for purposes of export in bond.”'
+rules:
+- name: electronic_cargo_manifest_delivery_required
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Day
+  source: Customs and Excise (Amendment) Act, 2023, s. 3(a), inserting Customs and
+    Excise Act s. 22(3)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+          excerpt: a pilot in charge of an aircraft shall before, or immediately after,
+            departure of the aircraft deliver, electronically to the customs service
+            division, a cargo manifest
+  versions:
+  - effective_from: '2024-01-01'
+    formula: person_is_pilot_in_charge_of_aircraft_departing_or_just_departed
+- name: monetary_deposit_or_security_guarantee_required_for_export_in_bond
+  kind: derived
+  entity: Asset
+  dtype: Judgment
+  period: Day
+  source: Customs and Excise (Amendment) Act, 2023, s. 9(b), inserting Customs and
+    Excise Act s. 69(2)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+          excerpt: a monetary deposit or security guarantee shall be required where
+            the goods removed from a warehouse are for purposes of export in bond
+  versions:
+  - effective_from: '2024-01-01'
+    formula: goods_removed_from_warehouse_for_export_in_bond
