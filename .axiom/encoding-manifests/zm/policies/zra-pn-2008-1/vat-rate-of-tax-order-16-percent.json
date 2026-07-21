@@ -1,0 +1,110 @@
+{
+  "applied_files": [
+    {
+      "path": "zm/policies/zra-pn-2008-1/vat-rate-of-tax-order-16-percent.yaml",
+      "sha256": "abf70c1484cf4ca5bc5f76fef7db8acb38f99d25d578f2dad7a9cce5f26dd17b"
+    },
+    {
+      "path": "zm/policies/zra-pn-2008-1/vat-rate-of-tax-order-16-percent.test.yaml",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76",
+    "dirty_tracked": false,
+    "identity_source": "trusted-runtime-attestation",
+    "root": "/opt/axiom-verification/python/runtime-attestation.json",
+    "version": "0.2.1302",
+    "version_commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76"
+  },
+  "axiom_encode_version": "0.2.1302",
+  "backend": "openai",
+  "citation": "zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent",
+  "context_manifest_file": "/tmp/axiom-encode-encodings/_eval_workspaces/openai-gpt-5.6-terra/zm-policy-zra-pn-2008-1-vat-rate-of-tax-order-16-percent/workspace/context-manifest.json",
+  "context_manifest_sha256": "9d55374fbd6f8828b45610caf13e7f38d8ccb9233834d5ab509fde3b86038425",
+  "generated_at": "2026-07-21T16:44:12.343573+00:00",
+  "generated_output_file": "/tmp/axiom-encode-encodings/openai-gpt-5.6-terra/policies/zra-pn-2008-1/vat-rate-of-tax-order-16-percent.yaml",
+  "generated_output_root": "/tmp/axiom-encode-encodings",
+  "generated_output_sha256": "6d21813fde7b4db8d0a5e282237ceb7e4618fb4ffec3f9cb99517bc15881f11d",
+  "generation_prompt_sha256": "d61633fac5ed2a93e1521a0bf23674622b7b1176ee6cbe82fa0ffc81b764ebb5",
+  "model": "gpt-5.6-terra",
+  "run_id": "5ecae936",
+  "runner": "openai-gpt-5.6-terra",
+  "schema_version": "axiom-encode/applied-rulespec/v5",
+  "signature": {
+    "algorithm": "ed25519-domain-v1",
+    "key_id": "sha256:24a78725a23b1c83cfc38bdc22f75401d8008e7a8477796b55179d1fc79c4d9a",
+    "value": "GIr/eJS/rnrgv2xf6+uIwKI5MddGOReO5N5auza+o7y/K+o1yGUBRRK6H96QnhqR/uJT0QdieZCX9ed6ydXeDQ=="
+  },
+  "source_attestation": {
+    "component_rows": [
+      {
+        "body_sha256": "2b87e8fabc1f07655a0d975005e1dc96b4a3b5a8f56f9ce7734c619d5e33a6c3",
+        "citation_path": "zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent/document-1",
+        "document_class": "policy",
+        "expression_date": "2008-04-01",
+        "jurisdiction": "zm",
+        "line_number": 2,
+        "provision_file": "data/corpus/provisions/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct.jsonl",
+        "provision_file_sha256": "e449e0189fc0833a58f76100eb94aac8dedc765a3ac9f3d7d41a865d8dd64892",
+        "record_id": "73baa7fa-5abd-5de6-aee9-56d28d7676ab",
+        "source_as_of": "2026-07-09",
+        "source_path": "sources/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct/official-documents/zm-zra-pn-2008-1-vat-rate-order.pdf",
+        "version": "2026-07-09-zm-zra-practice-notes-and-sct"
+      }
+    ],
+    "corpus_release": "zm-rulespec-2026-07-12",
+    "corpus_release_content_sha256": "62d7a3e73dd9e469eb919d419a6ef11518515c42c099c07d23af654b303c92b5",
+    "corpus_release_selector_sha256": "d7acbb7ae0df24635beaaa239a611e4cc9e960a252cf053f3ef52feb8f60096e",
+    "corpus_source": "local",
+    "expression_date": "2008-04-01",
+    "generation_input_sha256": "2b87e8fabc1f07655a0d975005e1dc96b4a3b5a8f56f9ce7734c619d5e33a6c3",
+    "provision_file": "data/corpus/provisions/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct.jsonl",
+    "provision_file_sha256": "e449e0189fc0833a58f76100eb94aac8dedc765a3ac9f3d7d41a865d8dd64892",
+    "requested_corpus_citation_path": "zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent",
+    "resolved_corpus_citation_path": "zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent",
+    "resolved_text_sha256": "2b87e8fabc1f07655a0d975005e1dc96b4a3b5a8f56f9ce7734c619d5e33a6c3",
+    "row": {
+      "body_sha256": null,
+      "citation_path": "zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent",
+      "document_class": "policy",
+      "expression_date": "2008-04-01",
+      "jurisdiction": "zm",
+      "line_number": 1,
+      "provision_file": "data/corpus/provisions/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct.jsonl",
+      "provision_file_sha256": "e449e0189fc0833a58f76100eb94aac8dedc765a3ac9f3d7d41a865d8dd64892",
+      "record_id": "dcc06b3a-ef00-53bf-92ba-782a88d40069",
+      "source_as_of": "2026-07-09",
+      "source_path": "sources/zm/policy/2026-07-09-zm-zra-practice-notes-and-sct/official-documents/zm-zra-pn-2008-1-vat-rate-order.pdf",
+      "version": "2026-07-09-zm-zra-practice-notes-and-sct"
+    },
+    "rulespec_root": "rulespec-zm/zm",
+    "source_as_of": "2026-07-09",
+    "source_sha256": "2b87e8fabc1f07655a0d975005e1dc96b4a3b5a8f56f9ce7734c619d5e33a6c3"
+  },
+  "tool": "axiom-encode encode --apply",
+  "trace_file": "/tmp/axiom-encode-encodings/traces/openai-gpt-5.6-terra/zm-policy-zra-pn-2008-1-vat-rate-of-tax-order-16-percent.json",
+  "trace_sha256": "0f93e7a8f575e9d27fcf3c77e3beb9f5eb59b91bb01389700662c53ae79b680e",
+  "validation_execution": {
+    "axiom_encode": {
+      "commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76",
+      "identity_source": "trusted-runtime-attestation",
+      "repository": "github.com/TheAxiomFoundation/axiom-encode",
+      "version": "0.2.1302"
+    },
+    "axiom_rules_engine": {
+      "commit": "05eac9d2f89dabe5c6673176260762cef3a58f47",
+      "repository": "github.com/TheAxiomFoundation/axiom-rules-engine"
+    },
+    "policy_pre_apply": {
+      "pre_apply_content_sha256": "37b2ab6e0bbe273a5b429531224a66cb48a0daf172b264e5d2d4bf9200f0edd0",
+      "pre_apply_file_count": 24,
+      "rulespec_root": "rulespec-zm/zm",
+      "toolchain_contract_sha256": "0645004e7d59c19f3a0313f2458814a0b5a71146fb08075f639fe2f8bd5e31bf",
+      "validation_waiver_set_sha256": "15c2e6e3e4b38557e651405958bbb5b68c75c1f2b7b45cca60adcb80ab8b3962"
+    },
+    "rulespec_dependencies": [],
+    "schema": "axiom-encode/apply-validation-execution/v1"
+  },
+  "validation_waiver_set_sha256": "15c2e6e3e4b38557e651405958bbb5b68c75c1f2b7b45cca60adcb80ab8b3962"
+}

@@ -1,0 +1,22 @@
+format: rulespec/v1
+module:
+  summary: '"STATUTORY INSTRUMENT NUMBER 14 OF 2008 ... reduces the tax rate from
+    seventeen and half per centum to sixteen per centum." "Statutory Instrument Number
+    14 of 2008 ... comes into effect on 1st April 2008."'
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
+    source_sha256: 2b87e8fabc1f07655a0d975005e1dc96b4a3b5a8f56f9ce7734c619d5e33a6c3
+  deferred_outputs:
+  - output: zm:policies/zra-pn-2008-1/vat-rate-of-tax-order-16-percent#vat_rate_of_tax
+    reason: Generated rule used a thresholded, capped, base-limited, or excess-amount
+      imported rate as a flat percentage. This output is deferred until the cited
+      mechanics can be composed without flattening the imported rate.
+rules:
+- name: vat_standard_rate_restatement
+  kind: source_relation
+  source_relation:
+    type: restates
+    target: zm:statutes/cap-331/value-added-tax-act#vat_standard_rate
+  source: ZRA Practice Note No. 1/2008, paragraph 5.6
