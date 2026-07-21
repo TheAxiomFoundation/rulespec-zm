@@ -1,0 +1,110 @@
+{
+  "applied_files": [
+    {
+      "path": "zm/statutes/cap-256/national-pension-scheme-act.yaml",
+      "sha256": "e52811b19991a39572a2134e0de565a344efdc3d2823f09d053254c76e523cd3"
+    },
+    {
+      "path": "zm/statutes/cap-256/national-pension-scheme-act.test.yaml",
+      "sha256": "f06e8b0aafe8ce2c0116140a580af91358f2bb5fbfcdac126c0c1a1e4e8fb55a"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76",
+    "dirty_tracked": false,
+    "identity_source": "trusted-runtime-attestation",
+    "root": "/opt/axiom-verification/python/runtime-attestation.json",
+    "version": "0.2.1302",
+    "version_commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76"
+  },
+  "axiom_encode_version": "0.2.1302",
+  "backend": "openai",
+  "citation": "zm/statute/cap-256/national-pension-scheme-act",
+  "context_manifest_file": "/tmp/axiom-encode-encodings/_eval_workspaces/openai-gpt-5.6-sol/zm-statute-cap-256-national-pension-scheme-act/workspace/context-manifest.json",
+  "context_manifest_sha256": "dff0fc3c67ced4859ee7242ae5c1f6c06fb02cecf2d1f6bdca9d4a7b87d786fa",
+  "generated_at": "2026-07-21T17:01:56.486051+00:00",
+  "generated_output_file": "/tmp/axiom-encode-encodings/openai-gpt-5.6-sol/statutes/cap-256/national-pension-scheme-act.yaml",
+  "generated_output_root": "/tmp/axiom-encode-encodings",
+  "generated_output_sha256": "e52811b19991a39572a2134e0de565a344efdc3d2823f09d053254c76e523cd3",
+  "generation_prompt_sha256": "928f95d10157bb5c6824f630b983aed0bbbab35f0c3f6eeb5adcef17fef8ff92",
+  "model": "gpt-5.6-sol",
+  "run_id": "a51ba07b",
+  "runner": "openai-gpt-5.6-sol",
+  "schema_version": "axiom-encode/applied-rulespec/v5",
+  "signature": {
+    "algorithm": "ed25519-domain-v1",
+    "key_id": "sha256:24a78725a23b1c83cfc38bdc22f75401d8008e7a8477796b55179d1fc79c4d9a",
+    "value": "CBk8g2Xsc8K5+x2ZPScwq89y9ByGL8xu3Vetni8FOG5GVqf/BpHJTRaRRBWlYSreASbkR1BI0mtbIbaP5tvQDA=="
+  },
+  "source_attestation": {
+    "component_rows": [
+      {
+        "body_sha256": "af7a7de85f913ca9d84ac4c5f60e0707ae435ea5c965eefdbc628fdda81f42e6",
+        "citation_path": "zm/statute/cap-256/national-pension-scheme-act/document-1",
+        "document_class": "statute",
+        "expression_date": "1996-12-31",
+        "jurisdiction": "zm",
+        "line_number": 2,
+        "provision_file": "data/corpus/provisions/zm/statute/2026-07-08-zm-napsa-nhima-statutes.jsonl",
+        "provision_file_sha256": "a21bdf03008af371a5683658af015bc05f836dbde9fd3c0b4efc080f85c805ec",
+        "record_id": "d918b43b-f12e-5c7b-825c-24da0148870c",
+        "source_as_of": "2026-07-08",
+        "source_path": "sources/zm/statute/2026-07-08-zm-napsa-nhima-statutes/official-documents/zm-cap-256-national-pension-scheme-act.pdf",
+        "version": "2026-07-08-zm-napsa-nhima-statutes"
+      }
+    ],
+    "corpus_release": "zm-rulespec-2026-07-12",
+    "corpus_release_content_sha256": "62d7a3e73dd9e469eb919d419a6ef11518515c42c099c07d23af654b303c92b5",
+    "corpus_release_selector_sha256": "d7acbb7ae0df24635beaaa239a611e4cc9e960a252cf053f3ef52feb8f60096e",
+    "corpus_source": "local",
+    "expression_date": "1996-12-31",
+    "generation_input_sha256": "af7a7de85f913ca9d84ac4c5f60e0707ae435ea5c965eefdbc628fdda81f42e6",
+    "provision_file": "data/corpus/provisions/zm/statute/2026-07-08-zm-napsa-nhima-statutes.jsonl",
+    "provision_file_sha256": "a21bdf03008af371a5683658af015bc05f836dbde9fd3c0b4efc080f85c805ec",
+    "requested_corpus_citation_path": "zm/statute/cap-256/national-pension-scheme-act",
+    "resolved_corpus_citation_path": "zm/statute/cap-256/national-pension-scheme-act",
+    "resolved_text_sha256": "af7a7de85f913ca9d84ac4c5f60e0707ae435ea5c965eefdbc628fdda81f42e6",
+    "row": {
+      "body_sha256": null,
+      "citation_path": "zm/statute/cap-256/national-pension-scheme-act",
+      "document_class": "statute",
+      "expression_date": "1996-12-31",
+      "jurisdiction": "zm",
+      "line_number": 1,
+      "provision_file": "data/corpus/provisions/zm/statute/2026-07-08-zm-napsa-nhima-statutes.jsonl",
+      "provision_file_sha256": "a21bdf03008af371a5683658af015bc05f836dbde9fd3c0b4efc080f85c805ec",
+      "record_id": "ed74bfd7-e46c-58a0-9b8e-dc3b8c1b958d",
+      "source_as_of": "2026-07-08",
+      "source_path": "sources/zm/statute/2026-07-08-zm-napsa-nhima-statutes/official-documents/zm-cap-256-national-pension-scheme-act.pdf",
+      "version": "2026-07-08-zm-napsa-nhima-statutes"
+    },
+    "rulespec_root": "rulespec-zm/zm",
+    "source_as_of": "2026-07-08",
+    "source_sha256": "af7a7de85f913ca9d84ac4c5f60e0707ae435ea5c965eefdbc628fdda81f42e6"
+  },
+  "tool": "axiom-encode encode --apply",
+  "trace_file": "/tmp/axiom-encode-encodings/traces/openai-gpt-5.6-sol/zm-statute-cap-256-national-pension-scheme-act.json",
+  "trace_sha256": "1d0f35a94d61ff3e1dd40767014d11ad2d82f1ea422234e79a68dcbf355db0b1",
+  "validation_execution": {
+    "axiom_encode": {
+      "commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76",
+      "identity_source": "trusted-runtime-attestation",
+      "repository": "github.com/TheAxiomFoundation/axiom-encode",
+      "version": "0.2.1302"
+    },
+    "axiom_rules_engine": {
+      "commit": "05eac9d2f89dabe5c6673176260762cef3a58f47",
+      "repository": "github.com/TheAxiomFoundation/axiom-rules-engine"
+    },
+    "policy_pre_apply": {
+      "pre_apply_content_sha256": "37b2ab6e0bbe273a5b429531224a66cb48a0daf172b264e5d2d4bf9200f0edd0",
+      "pre_apply_file_count": 24,
+      "rulespec_root": "rulespec-zm/zm",
+      "toolchain_contract_sha256": "0645004e7d59c19f3a0313f2458814a0b5a71146fb08075f639fe2f8bd5e31bf",
+      "validation_waiver_set_sha256": "15c2e6e3e4b38557e651405958bbb5b68c75c1f2b7b45cca60adcb80ab8b3962"
+    },
+    "rulespec_dependencies": [],
+    "schema": "axiom-encode/apply-validation-execution/v1"
+  },
+  "validation_waiver_set_sha256": "15c2e6e3e4b38557e651405958bbb5b68c75c1f2b7b45cca60adcb80ab8b3962"
+}

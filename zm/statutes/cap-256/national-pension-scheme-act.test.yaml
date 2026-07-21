@@ -1,0 +1,14 @@
+- name: two overdue months or parts
+  period: 2000-01
+  input:
+    zm:statutes/cap-256/national-pension-scheme-act#input.unpaid_contribution_amount: 1000
+    zm:statutes/cap-256/national-pension-scheme-act#input.overdue_month_or_part_count: 2
+  output:
+    zm:statutes/cap-256/national-pension-scheme-act#overdue_contribution_penalty: 400
+- name: no overdue period
+  period: 2000-01
+  input:
+    zm:statutes/cap-256/national-pension-scheme-act#input.unpaid_contribution_amount: 1000
+    zm:statutes/cap-256/national-pension-scheme-act#input.overdue_month_or_part_count: 0
+  output:
+    zm:statutes/cap-256/national-pension-scheme-act#overdue_contribution_penalty: 0

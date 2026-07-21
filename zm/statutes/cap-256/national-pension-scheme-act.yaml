@@ -1,0 +1,47 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+    source_sha256: af7a7de85f913ca9d84ac4c5f60e0707ae435ea5c965eefdbc628fdda81f42e6
+  summary: 'Section 15(2): “If any contribution is not paid within the time stated
+    under subsection (1) a sum equal to twenty per centum of the amount unpaid shall
+    be added as a penalty for each month or part thereof after the date the payment
+    is due.”'
+rules:
+- name: overdue_contribution_monthly_penalty_rate
+  kind: parameter
+  dtype: Rate
+  source: National Pension Scheme Act, section 15(2)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+          excerpt: a sum equal to twenty per centum of the amount unpaid
+  versions:
+  - effective_from: '0001-01-01'
+    formula: '0.20'
+- name: overdue_contribution_penalty
+  kind: derived
+  entity: Employer
+  dtype: Money
+  unit: ZMW
+  period: Month
+  source: National Pension Scheme Act, section 15(2)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+          excerpt: twenty per centum of the amount unpaid shall be added as a penalty
+            for each month or part thereof
+  versions:
+  - effective_from: '0001-01-01'
+    formula: overdue_contribution_monthly_penalty_rate * unpaid_contribution_amount
+      * overdue_month_or_part_count
