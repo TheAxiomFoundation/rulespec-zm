@@ -1,0 +1,25 @@
+format: rulespec/v1
+module:
+  status: deferred
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/act-2022-25/customs-and-excise-amendment-2022
+    source_sha256: df51731b5b5fb9e210e33183109a6d1fd4e061d229f8c90e105fa5946ac55f78
+  summary: This Act shall come into operation on 1st January, 2023. Despite subsection
+    (2), section 188A shall come into operation on a date appointed by the Minister
+    by statutory instrument. Appendix I, Appendix II, Appendix III and Appendix IV
+    amend customs-duty, excise-duty, surtax, motor-vehicle-emissions surtax, and export-duty
+    schedules by Harmonised System tariff classification.
+  deferred_outputs:
+  - output: zm:statutes/act-2022-25/customs-and-excise-amendment-2022#customs_and_excise_schedule_rates
+    reason: The source amends several tariff schedules whose operative application
+      depends on Harmonised System commodity classifications, imported-goods attributes,
+      quantity units, and pre-existing principal-Act schedule structures that are
+      not supplied as executable RuleSpec context.
+  - output: zm:statutes/act-2022-25/customs-and-excise-amendment-2022#electronic_fiscal_device_contravention_penalty
+    reason: Section 188A has a separate commencement date appointed by the Minister
+      by statutory instrument, but the appointing instrument and date are not supplied.
+      The legal subject also spans licensees and service providers without a supplied
+      executable entity or licensing relation.
+rules: []
