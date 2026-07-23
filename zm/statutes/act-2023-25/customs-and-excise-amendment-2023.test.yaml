@@ -8,7 +8,6 @@
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#input.goods_hs_code: 2207.20.90
   output:
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_spirits_excise_duty_rate: 0.6
-    zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_tobacco_excise_duty_rate_amount: 0
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_coke_and_semicoke_excise_duty_rate: 0
 - name: tobacco_heading_uses_four_hundred_kwacha_rate_amount
   period:
@@ -17,11 +16,9 @@
     start: '2024-01-15'
     end: '2024-01-15'
   input:
-    zm:statutes/act-2023-25/customs-and-excise-amendment-2023#input.goods_hs_code: "24.01"
+    zm:statutes/act-2023-25/customs-and-excise-amendment-2023#input.goods_hs_code: 24.01
   output:
-    zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_spirits_excise_duty_rate: 0
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_tobacco_excise_duty_rate_amount: 400
-    zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_coke_and_semicoke_excise_duty_rate: 0
 - name: coke_and_semicoke_subheading_uses_five_percent_rate
   period:
     period_kind: custom
@@ -32,7 +29,6 @@
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#input.goods_hs_code: 2704.00.00
   output:
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_spirits_excise_duty_rate: 0
-    zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_tobacco_excise_duty_rate_amount: 0
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_coke_and_semicoke_excise_duty_rate: 0.05
 - name: customs_seal_offence_fine_capped_at_one_hundred_thousand
   period:

@@ -502,7 +502,7 @@ rules:
     versions:
       - effective_from: '2024-01-01'
         formula: |-
-          if goods_hs_code == "24.01": tobacco_excise_duty_rate_amount else: 0
+          if goods_hs_code == 24.01: tobacco_excise_duty_rate_amount else: 0
 
   - name: applicable_coke_and_semicoke_excise_duty_rate
     kind: derived
