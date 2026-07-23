@@ -30,6 +30,15 @@
   output:
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_spirits_excise_duty_rate: 0
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#applicable_coke_and_semicoke_excise_duty_rate: 0.05
+- name: tobacco_heading_code_parameter
+  period:
+    period_kind: custom
+    name: effective_day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input: {}
+  output:
+    zm:statutes/act-2023-25/customs-and-excise-amendment-2023#tobacco_heading_hs_code: 24.01
 - name: customs_seal_offence_fine_capped_at_one_hundred_thousand
   period:
     period_kind: custom

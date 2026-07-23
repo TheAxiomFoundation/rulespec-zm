@@ -480,6 +480,23 @@ rules:
         formula: |-
           if goods_hs_code == "2207.20.90": spirits_excise_duty_rate else: 0
 
+  - name: tobacco_heading_hs_code
+    kind: parameter
+    dtype: Decimal
+    source: Appendix II(c), heading 7
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'heading 24.01, by the deletion of the figure “K361” and the substitution therefor of the figure “K400”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          24.01
+
   - name: applicable_tobacco_excise_duty_rate_amount
     kind: derived
     entity: Asset
@@ -502,7 +519,7 @@ rules:
     versions:
       - effective_from: '2024-01-01'
         formula: |-
-          if goods_hs_code == 24.01: tobacco_excise_duty_rate_amount else: 0
+          if goods_hs_code == tobacco_heading_hs_code: tobacco_excise_duty_rate_amount else: 0
 
   - name: applicable_coke_and_semicoke_excise_duty_rate
     kind: derived
