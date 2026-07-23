@@ -7,17 +7,19 @@ module:
   summary: |-
     “The excise duty on clear beer of HS Code 2203.00.90 is reduced” to 20% for malt clear beer and 5% for cassava clear beer where manufactured by a small and medium manufacturer or by a brewer in excess quantities. The Regulations do not apply to clear beer whose duty is under remission, and exclude sorghum clear beer manufactured by a small and medium enterprise or brewed in excess quantities.
   deferred_outputs:
-    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(m)#cotton_income_tax_rate
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/a#non_clear_beer_lettered_items
+      reason: The remaining (a)-keyed lettered items of Practice Note 1/2024 (rural-enterprise income-tax concession, agro-processing eligibility, VAT taxable-supply and tax-invoice rules, electronic-money issuance, pension payment lists) are income-tax and VAT commentary outside the clear-beer excise suspension scope; the clear-beer regulation 4(a) small-and-medium-manufacturer limb itself is encoded by this module's rules.
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/m#cotton_income_tax_rate
       reason: Cotton income-tax incentive is outside the clear-beer excise suspension scope.
-    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(c)#hydroelectricity_input_tax_claim_period
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/c#hydroelectricity_input_tax_claim_period
       reason: VAT intending-trader input-tax period is outside the clear-beer excise suspension scope.
-    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(e)#cutrag_allowable_loss
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/e#cutrag_allowable_loss
       reason: Tobacco warehousing deficiency rule is outside the clear-beer excise suspension scope.
-    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(d)#employer_motor_vehicle_benefit_disallowance
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/d#employer_motor_vehicle_benefit_disallowance
       reason: Employment-benefit tax treatment is outside the clear-beer excise suspension scope.
-    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(j)#cessation_payment_tax_treatment
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/j#cessation_payment_tax_treatment
       reason: Employment-cessation payment treatment is outside the clear-beer excise suspension scope.
-    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(b)#freight_transport_vat_treatment
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/b#freight_transport_vat_treatment
       reason: VAT freight-transport treatment is outside the clear-beer excise suspension scope.
 rules:
   - name: small_medium_manufacturer_annual_production_cap

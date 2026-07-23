@@ -8,6 +8,11 @@ module:
   summary: |-
     “These Regulations shall come into operation on 1st January, 2026.”
     The substituted schedules specify national average monthly earnings of K9,309.00, a social security ceiling of K37,236.00, minimum total monthly contributions of K1.50, and maximum total monthly contributions of K3,723.60 for 1st January through 31st December 2026. The contribution-table notes state that the employee’s and employer’s shares shall each be calculated as five percent of the employee’s total pensionable earnings without first rounding earnings or contribution amounts to the nearest Kwacha.
+  deferred_outputs:
+    - output: zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#name_indexed_scheme_amounts
+      reason: The First Schedule National Average Monthly Earnings figure is the scheme's standing reference statistic; the values it indexes (for example the Cap. 256 section 19 minimum-pension percentages) are computed in the principal-Act modules, not by this SI's contribution formulas, so no numeric output of this module consumes it directly.
+      source_values:
+        - zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#national_average_monthly_earnings
 rules:
   - name: national_average_monthly_earnings
     kind: parameter
@@ -453,8 +458,11 @@ rules:
     versions:
       - effective_from: '2026-01-01'
         formula: |-
-          min(
-            employee_contribution_rate * min(max(0, monthly_pensionable_earnings), monthly_social_security_ceiling),
+          if monthly_pensionable_earnings <= 0: 0 else: min(
+            max(
+              employee_contribution_rate * min(monthly_pensionable_earnings, monthly_social_security_ceiling),
+              minimum_total_monthly_contribution / 2
+            ),
             maximum_monthly_employee_contribution
           )
 
@@ -486,8 +494,11 @@ rules:
     versions:
       - effective_from: '2026-01-01'
         formula: |-
-          min(
-            employer_contribution_rate * min(max(0, monthly_pensionable_earnings), monthly_social_security_ceiling),
+          if monthly_pensionable_earnings <= 0: 0 else: min(
+            max(
+              employer_contribution_rate * min(monthly_pensionable_earnings, monthly_social_security_ceiling),
+              minimum_total_monthly_contribution / 2
+            ),
             maximum_monthly_employer_contribution
           )
 
