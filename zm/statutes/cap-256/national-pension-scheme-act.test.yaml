@@ -21,14 +21,18 @@
     zm:statutes/cap-256/national-pension-scheme-act#input.monthly_contributions_paid: 180
   output:
     zm:statutes/cap-256/national-pension-scheme-act#early_retirement_qualifies: holds
-- name: monthly_pension_floor_and_late_contribution_penalty
+- name: monthly_pension_floor
   period: 2026-07
   input:
     zm:statutes/cap-256/national-pension-scheme-act#input.national_average_earnings: 1000
+  output:
+    zm:statutes/cap-256/national-pension-scheme-act#minimum_monthly_retirement_pension: 200
+- name: late_contribution_penalty_when_unpaid
+  period: 2026-07
+  input:
     zm:statutes/cap-256/national-pension-scheme-act#input.contribution_not_paid_by_month_end: true
     zm:statutes/cap-256/national-pension-scheme-act#input.unpaid_contribution_amount: 500
   output:
-    zm:statutes/cap-256/national-pension-scheme-act#minimum_monthly_retirement_pension: 200
     zm:statutes/cap-256/national-pension-scheme-act#monthly_late_contribution_penalty: 100
 - name: auto_zero_monthly_late_contribution_penalty
   period:
