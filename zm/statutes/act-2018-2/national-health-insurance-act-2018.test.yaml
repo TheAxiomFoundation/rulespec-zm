@@ -1,0 +1,30 @@
+- name: citizen_above_membership_age_and_elderly_exemption_category
+  period: 2018-05
+  input:
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_citizen: true
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_established_resident: false
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_age: 66
+    ? zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_mentally_or_physically_disabled_and_unable_to_work
+    : false
+    ? zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_classified_as_poor_and_vulnerable_by_social_welfare_ministry
+    : false
+    ? zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_prescribed_by_minister_for_contribution_exemption
+    : false
+  output:
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#person_required_to_be_registered_as_member: holds
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#person_is_in_contribution_exemption_category: holds
+- name: established_resident_at_age_threshold_not_required_to_register
+  period: 2018-05
+  input:
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_citizen: false
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_established_resident: true
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_age: 18
+    ? zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_mentally_or_physically_disabled_and_unable_to_work
+    : false
+    ? zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_classified_as_poor_and_vulnerable_by_social_welfare_ministry
+    : true
+    ? zm:statutes/act-2018-2/national-health-insurance-act-2018#input.person_is_prescribed_by_minister_for_contribution_exemption
+    : false
+  output:
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#person_required_to_be_registered_as_member: not_holds
+    zm:statutes/act-2018-2/national-health-insurance-act-2018#person_is_in_contribution_exemption_category: holds
