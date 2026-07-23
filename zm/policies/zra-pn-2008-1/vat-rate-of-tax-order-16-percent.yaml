@@ -1,0 +1,40 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
+    source_sha256: 2b87e8fabc1f07655a0d975005e1dc96b4a3b5a8f56f9ce7734c619d5e33a6c3
+  summary: |-
+    “Statutory Instrument Number 14 of 2008, which comes into effect on 1st April 2008.”
+    “This amendment reduces the tax rate from seventeen and half per centum to sixteen per centum.”
+rules:
+  - name: value_added_tax_standard_rate
+    kind: parameter
+    dtype: Rate
+    source: ZRA Practice Note No. 1/2008, paragraphs 5.1 and 5.6
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
+              excerpt: "reduces the tax rate from seventeen and half per centum"
+          - path: versions[1].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
+              excerpt: "Statutory Instrument Number 14 of 2008, which comes into effect on 1st April 2008"
+          - path: versions[1].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2008-1/vat-rate-of-tax-order-16-percent
+              excerpt: "reduces the tax rate from seventeen and half per centum to sixteen per centum"
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          0.175
+      - effective_from: '2008-04-01'
+        formula: |-
+          0.16

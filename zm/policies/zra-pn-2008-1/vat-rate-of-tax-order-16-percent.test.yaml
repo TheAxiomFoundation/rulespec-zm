@@ -1,0 +1,10 @@
+- name: standard VAT rate before the 1 April 2008 reduction
+  period: 2008-03
+  input: {}
+  output:
+    zm:policies/zra-pn-2008-1/vat-rate-of-tax-order-16-percent#value_added_tax_standard_rate: 0.175
+- name: standard VAT rate from 1 April 2008
+  period: 2008-04
+  input: {}
+  output:
+    zm:policies/zra-pn-2008-1/vat-rate-of-tax-order-16-percent#value_added_tax_standard_rate: 0.16

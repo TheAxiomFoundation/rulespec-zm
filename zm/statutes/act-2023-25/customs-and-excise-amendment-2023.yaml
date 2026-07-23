@@ -1,0 +1,491 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+    source_sha256: 79e604fe0f95da4de21519d25a05ebfa0b8fb301b9ad3826d1205b90fa73a6cf
+  summary: |-
+    “This Act shall come into operation on 1st January, 2024.” Appendix II substitutes “60%” for “125%” opposite subheading 2207.20.90, substitutes “K400” for “K361” opposite heading 24.01, inserts coke and semi-coke at 5%, and substitutes 25% for 30% opposite specified Chapter 87 subheadings. Appendices I and III amend customs-duty and surtax rates.
+  deferred_outputs:
+    - output: zm:statutes/act-2023-25/customs-and-excise-amendment-2023#remission_of_unrecovered_duty_fine_or_interest
+      reason: The remission output depends on definitions and operative provisions of the principal Customs and Excise Act that are not supplied as RuleSpec context.
+      source_values:
+        - zm:statutes/act-2023-25/customs-and-excise-amendment-2023#inactive_tax_account_period
+        - zm:statutes/act-2023-25/customs-and-excise-amendment-2023#outstanding_tax_debt_period
+        - zm:statutes/act-2023-25/customs-and-excise-amendment-2023#small_tax_debt_limit
+    - output: zm:statutes/act-2023-25/customs-and-excise-amendment-2023#licence_renewal_compliance
+      reason: Section 55 of the principal Act is unavailable, so the amendment's complete licence-renewal consequence cannot be reconstructed.
+      source_values:
+        - zm:statutes/act-2023-25/customs-and-excise-amendment-2023#licence_renewal_minimum_lead_time
+rules:
+  - name: amended_section_32_time_limit
+    kind: parameter
+    dtype: Integer
+    unit: day
+    source: section 4
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'Section 32(4) of the principal Act is amended by the deletion of the word “fifteen”and the substitution therefor of the word “five”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          5
+
+  - name: amended_section_33_time_limit
+    kind: parameter
+    dtype: Integer
+    unit: day
+    source: section 5
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'deletion of word “fifteen” and the substitution therefor of the word “five”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          5
+
+  - name: alcohol_content_threshold
+    kind: parameter
+    dtype: Rate
+    source: section 6
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'alcohol with an alcoholic content of above eighty percent'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.80
+
+  - name: licence_renewal_minimum_lead_time
+    kind: parameter
+    dtype: Integer
+    unit: day
+    source: section 7
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'made not less than ninety days before the expiry of the licence'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          90
+
+  - name: customs_seal_offence_fine_limit
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: section 11, substituted section 145(4)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'a fine not exceeding one hundred thousand penalty units'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          100000
+
+  - name: customs_seal_offence_imprisonment_limit
+    kind: parameter
+    dtype: Integer
+    unit: year
+    source: section 11, substituted section 145(4)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'imprisonment for a term not exceeding one year'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          1
+
+  - name: inactive_tax_account_period
+    kind: parameter
+    dtype: Integer
+    unit: year
+    source: section 12, substituted section 171B(1)(b)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'tax account is inactive for a period of ten years'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          10
+
+  - name: outstanding_tax_debt_period
+    kind: parameter
+    dtype: Integer
+    unit: year
+    source: section 12, substituted section 171B(1)(e)(i)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'a tax debt is outstanding for over ten years old'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          10
+
+  - name: small_tax_debt_limit
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: section 12, substituted section 171B(1)(e)(iii)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'the tax debt is less than two hundred kwacha'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          200
+
+  - name: building_panel_customs_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix I(b), subheading 7308.90.91
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              table:
+                header: First Schedule Chapter 73 replacement
+                row: '7308.90.91 panels for buildings and cold room insulation'
+                column: Customs Duty
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.15
+
+  - name: electrical_control_customs_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix I(c), subheading 8537.10.00
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'deletion of the figure “15%” and the substitution therefor of the figure “25%”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.25
+
+  - name: specified_rail_goods_customs_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix I(d)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'deletion of the figure “10%” and the substitution therefor of the word “free”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0
+
+  - name: specified_electric_vehicle_customs_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix I(e)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'deletion of the figure “15%” and the substitution therefor of the word “free”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0
+
+  - name: baby_diaper_customs_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix I(f), subheading 9619.00.91
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              table:
+                header: First Schedule Chapter 96 replacement
+                row: '9619.00.91 Baby diapers'
+                column: Customs Duty
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.15
+
+  - name: fruit_juice_excise_duty_rate_amount
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Appendix II(a), heading 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'deletion of the figure “K0.30” and the substitution therefor of the figure “K0.60”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.60
+
+  - name: spirits_excise_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix II(b), heading 6(3), subheading 2207.20.90
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'deletion of the figure “125%” and the substitution therefor of the figure “60%”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.60
+
+  - name: tobacco_excise_duty_rate_amount
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Appendix II(c), heading 7
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'deletion of the figure “K361” and the substitution therefor of the figure “K400”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          400
+
+  - name: coke_and_semicoke_excise_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix II(d), heading 9(2), subheading 2704.00.00
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              table:
+                header: Second Schedule heading 9 insertion
+                row: '9(2) coke and semi-coke, 2704.00.00'
+                column: Duty Rate
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.05
+
+  - name: specified_hybrid_vehicle_excise_duty_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix II(e), heading 14
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'deletion of the figure “30%” and the substitution therefor of the figure “25%”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.25
+
+  - name: malt_surtax_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix III(a), subheading 1107.10.30
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'opposite subheading 1107.10.30 by the insertion of the figure “5%”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.05
+
+  - name: specified_ceramic_and_mattress_surtax_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix III(c)-(e)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'deletion of the figure “5%” and the substitution therefor of the figure “30%”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.30
+
+  - name: specified_glass_panel_and_diaper_surtax_rate
+    kind: parameter
+    dtype: Rate
+    source: Appendix III(f)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'insertion of the following subheadings in the appropriate places'
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              table:
+                header: Fourth Schedule Part I inserted subheadings
+                row: '7003.19.00 through 9619.00.91'
+                column: Surtax rate
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.05
+
+  - name: applicable_spirits_excise_duty_rate
+    kind: derived
+    entity: Asset
+    dtype: Rate
+    source: Appendix II(b), heading 6(3), subheading 2207.20.90
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'opposite subheading 2207.20.90'
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'substitution therefor of the figure “60%”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if goods_hs_code == "2207.20.90": spirits_excise_duty_rate else: 0
+
+  - name: applicable_tobacco_excise_duty_rate_amount
+    kind: derived
+    entity: Asset
+    dtype: Money
+    unit: ZMW
+    source: Appendix II(c), heading 7
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'heading 24.01, by the deletion of the figure “K361” and the substitution therefor of the figure “K400”'
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'substitution therefor of the figure “K400”'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if goods_hs_code == "24.01": tobacco_excise_duty_rate_amount else: 0
+
+  - name: applicable_coke_and_semicoke_excise_duty_rate
+    kind: derived
+    entity: Asset
+    dtype: Rate
+    source: Appendix II(d), heading 9(2), subheading 2704.00.00
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'coke and semi- 2704.00.00 tonne 5% coke of coal, of lignite or of peat, whether or not agglomerated; retort carbon'
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: '2704.00.00 tonne 5%'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if goods_hs_code == "2704.00.00": coke_and_semicoke_excise_duty_rate else: 0

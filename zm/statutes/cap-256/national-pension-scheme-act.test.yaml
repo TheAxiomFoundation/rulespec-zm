@@ -1,0 +1,47 @@
+- name: retirement_pension_qualifies_at_pensionable_age
+  period: 2026-07
+  input:
+    zm:statutes/cap-256/national-pension-scheme-act#input.member_has_retired_from_employment: true
+    zm:statutes/cap-256/national-pension-scheme-act#input.member_age: 55
+    zm:statutes/cap-256/national-pension-scheme-act#input.monthly_contributions_made: 180
+  output:
+    zm:statutes/cap-256/national-pension-scheme-act#retirement_pension_qualifies: holds
+- name: retirement_pension_requires_minimum_contributions
+  period: 2026-07
+  input:
+    zm:statutes/cap-256/national-pension-scheme-act#input.member_has_retired_from_employment: true
+    zm:statutes/cap-256/national-pension-scheme-act#input.member_age: 55
+    zm:statutes/cap-256/national-pension-scheme-act#input.monthly_contributions_made: 179
+  output:
+    zm:statutes/cap-256/national-pension-scheme-act#retirement_pension_qualifies: not_holds
+- name: early_retirement_qualifies_five_years_before_pensionable_age
+  period: 2026-07
+  input:
+    zm:statutes/cap-256/national-pension-scheme-act#input.member_age: 50
+    zm:statutes/cap-256/national-pension-scheme-act#input.monthly_contributions_paid: 180
+  output:
+    zm:statutes/cap-256/national-pension-scheme-act#early_retirement_qualifies: holds
+- name: monthly_pension_floor_and_late_contribution_penalty
+  period: 2026-07
+  input:
+    zm:statutes/cap-256/national-pension-scheme-act#input.national_average_earnings: 1000
+    zm:statutes/cap-256/national-pension-scheme-act#input.contribution_not_paid_by_month_end: true
+    zm:statutes/cap-256/national-pension-scheme-act#input.unpaid_contribution_amount: 500
+  output:
+    zm:statutes/cap-256/national-pension-scheme-act#minimum_monthly_retirement_pension: 200
+    zm:statutes/cap-256/national-pension-scheme-act#monthly_late_contribution_penalty: 100
+- name: auto_zero_monthly_late_contribution_penalty
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    zm:statutes/cap-256/national-pension-scheme-act#input.contribution_not_paid_by_month_end: false
+    zm:statutes/cap-256/national-pension-scheme-act#input.member_age: 0
+    zm:statutes/cap-256/national-pension-scheme-act#input.member_has_retired_from_employment: false
+    zm:statutes/cap-256/national-pension-scheme-act#input.monthly_contributions_made: 0
+    zm:statutes/cap-256/national-pension-scheme-act#input.monthly_contributions_paid: 0
+    zm:statutes/cap-256/national-pension-scheme-act#input.national_average_earnings: 0
+    zm:statutes/cap-256/national-pension-scheme-act#input.unpaid_contribution_amount: 0
+  output:
+    zm:statutes/cap-256/national-pension-scheme-act#monthly_late_contribution_penalty: 0

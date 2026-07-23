@@ -1,0 +1,232 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+  summary: |-
+    Section 18: “a retirement pension shall be paid to a retired member who has—(a) attained pensionable age; and (b) made not less than one hundred and eighty monthly contributions.” Section 19(4): “The minimum monthly pension shall be twenty per cent of the national average earnings.” Section 22(1): “A member shall qualify for early retirement if he is within five years of pensionable age and has paid contributions for at least one hundred and eighty months.” Section 15(2): “a sum equal to twenty per centum of the amount unpaid shall be added as a penalty for each month or part thereof.”
+rules:
+  - name: pensionable_age
+    kind: parameter
+    dtype: Integer
+    source: section 2; section 18(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: '"pensionable age" means the age of fifty-five years'
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          55
+
+  - name: retirement_pension_minimum_monthly_contributions
+    kind: parameter
+    dtype: Count
+    source: section 18(b)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: 'made not less than one hundred and eighty monthly contributions'
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          180
+
+  - name: minimum_monthly_retirement_pension_rate
+    kind: parameter
+    dtype: Rate
+    source: section 19(4)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: 'The minimum monthly pension shall be twenty per cent of the national average earnings.'
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          0.20
+
+  - name: early_retirement_lead_time_years
+    kind: parameter
+    dtype: Integer
+    source: section 22(1)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: 'within five years of pensionable age'
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          5
+
+  - name: early_retirement_minimum_monthly_contributions
+    kind: parameter
+    dtype: Count
+    source: section 22(1)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: 'has paid contributions for at least one hundred and eighty months'
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          180
+
+  - name: monthly_late_contribution_penalty_rate
+    kind: parameter
+    dtype: Rate
+    source: section 15(2)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: 'a sum equal to twenty per centum of the amount unpaid shall be added as a penalty for each month or part thereof'
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          0.20
+
+  - name: retirement_pension_qualifies
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Month
+    source: section 18
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: 'a retirement pension shall be paid to a retired member who has- Conditions for the award of retirement pension (a) attained pensionable age; and (b) made not less than one hundred and eighty monthly contributions'
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: zm:statutes/cap-256/national-pension-scheme-act#pensionable_age
+              output: pensionable_age
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: zm:statutes/cap-256/national-pension-scheme-act#retirement_pension_minimum_monthly_contributions
+              output: retirement_pension_minimum_monthly_contributions
+              hash: sha256:local
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          member_has_retired_from_employment
+          and member_age >= pensionable_age
+          and monthly_contributions_made >= retirement_pension_minimum_monthly_contributions
+
+  - name: early_retirement_qualifies
+    kind: derived
+    entity: Person
+    dtype: Judgment
+    period: Month
+    source: section 22(1)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: 'A member shall qualify for early retirement if he is within five years of pensionable age and has paid contributions for at least one hundred and eighty months.'
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: zm:statutes/cap-256/national-pension-scheme-act#pensionable_age
+              output: pensionable_age
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: zm:statutes/cap-256/national-pension-scheme-act#early_retirement_lead_time_years
+              output: early_retirement_lead_time_years
+              hash: sha256:local
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: zm:statutes/cap-256/national-pension-scheme-act#early_retirement_minimum_monthly_contributions
+              output: early_retirement_minimum_monthly_contributions
+              hash: sha256:local
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          member_age >= pensionable_age - early_retirement_lead_time_years
+          and member_age < pensionable_age
+          and monthly_contributions_paid >= early_retirement_minimum_monthly_contributions
+
+  - name: minimum_monthly_retirement_pension
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    source: section 19(4)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: 'The minimum monthly pension shall be twenty per cent of the national average earnings.'
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: zm:statutes/cap-256/national-pension-scheme-act#minimum_monthly_retirement_pension_rate
+              output: minimum_monthly_retirement_pension_rate
+              hash: sha256:local
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          minimum_monthly_retirement_pension_rate * national_average_earnings
+
+  - name: monthly_late_contribution_penalty
+    kind: derived
+    entity: Employer
+    dtype: Money
+    period: Month
+    source: section 15(2)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/cap-256/national-pension-scheme-act
+              excerpt: 'If any contribution is not paid within the time stated under subsection (1) a sum equal to twenty per centum of the amount unpaid shall be added as a penalty for each month or part thereof after the date the payment is due'
+          - path: versions[0].formula
+            kind: import
+            import:
+              target: zm:statutes/cap-256/national-pension-scheme-act#monthly_late_contribution_penalty_rate
+              output: monthly_late_contribution_penalty_rate
+              hash: sha256:local
+    versions:
+      - effective_from: '0001-01-01'
+        formula: |-
+          if contribution_not_paid_by_month_end: monthly_late_contribution_penalty_rate * unpaid_contribution_amount else: 0
