@@ -43,3 +43,12 @@
   input: {}
   output:
     zm:statutes/act-2023-25/customs-and-excise-amendment-2023#customs_seal_offence_maximum_fine: 100000
+- name: customs_seal_offence_imprisonment_capped_at_one_year
+  period:
+    period_kind: custom
+    name: effective_day
+    start: '2024-01-15'
+    end: '2024-01-15'
+  input: {}
+  output:
+    zm:statutes/act-2023-25/customs-and-excise-amendment-2023#customs_seal_offence_maximum_imprisonment: 1

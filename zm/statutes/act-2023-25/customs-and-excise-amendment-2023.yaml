@@ -145,6 +145,24 @@ rules:
         formula: |-
           customs_seal_offence_fine_limit
 
+  - name: customs_seal_offence_maximum_imprisonment
+    kind: derived
+    entity: Person
+    dtype: Integer
+    source: section 11, substituted section 145(4)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/statute/act-2023-25/customs-and-excise-amendment-2023
+              excerpt: 'imprisonment for a term not exceeding one year'
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          customs_seal_offence_imprisonment_limit
+
   - name: inactive_tax_account_period
     kind: parameter
     dtype: Integer
