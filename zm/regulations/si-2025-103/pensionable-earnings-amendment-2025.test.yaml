@@ -1,0 +1,24 @@
+- name: monthly contributions below ceiling
+  period: 2026-01
+  input:
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#input.monthly_pensionable_earnings: 10000.0
+  output:
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#monthly_employee_contribution: 500.0
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#monthly_employer_contribution: 500.0
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#total_monthly_contribution: 1000.0
+- name: monthly contributions at social security ceiling
+  period: 2026-06
+  input:
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#input.monthly_pensionable_earnings: 37236.0
+  output:
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#monthly_employee_contribution: 1861.8
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#monthly_employer_contribution: 1861.8
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#total_monthly_contribution: 3723.6
+- name: monthly contributions above social security ceiling
+  period: 2026-12
+  input:
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#input.monthly_pensionable_earnings: 40000.0
+  output:
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#monthly_employee_contribution: 1861.8
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#monthly_employer_contribution: 1861.8
+    zm:regulations/si-2025-103/pensionable-earnings-amendment-2025#total_monthly_contribution: 3723.6

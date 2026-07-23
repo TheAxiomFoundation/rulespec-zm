@@ -1,0 +1,252 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+  summary: |-
+    “The excise duty on clear beer of HS Code 2203.00.90 is reduced” to 20% for malt clear beer and 5% for cassava clear beer where manufactured by a small and medium manufacturer or by a brewer in excess quantities. The Regulations do not apply to clear beer whose duty is under remission, and exclude sorghum clear beer manufactured by a small and medium enterprise or brewed in excess quantities.
+  deferred_outputs:
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(m)#cotton_income_tax_rate
+      reason: Cotton income-tax incentive is outside the clear-beer excise suspension scope.
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(c)#hydroelectricity_input_tax_claim_period
+      reason: VAT intending-trader input-tax period is outside the clear-beer excise suspension scope.
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(e)#cutrag_allowable_loss
+      reason: Tobacco warehousing deficiency rule is outside the clear-beer excise suspension scope.
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(d)#employer_motor_vehicle_benefit_disallowance
+      reason: Employment-benefit tax treatment is outside the clear-beer excise suspension scope.
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(j)#cessation_payment_tax_treatment
+      reason: Employment-cessation payment treatment is outside the clear-beer excise suspension scope.
+    - output: zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations/(b)#freight_transport_vat_treatment
+      reason: VAT freight-transport treatment is outside the clear-beer excise suspension scope.
+rules:
+  - name: small_medium_manufacturer_annual_production_cap
+    kind: parameter
+    dtype: Decimal
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "manufacturing not more than 500,000 hectolitres of clear beer per annum"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          500000
+
+  - name: cassava_brewer_excess_quantity_threshold
+    kind: parameter
+    dtype: Decimal
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "cassava in excess of 458,138 hectolitres"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          458138
+
+  - name: malt_brewer_excess_quantity_threshold
+    kind: parameter
+    dtype: Decimal
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "2,287,102 hectolitres manufactured from malt per annum"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          2287102
+
+  - name: malt_clear_beer_suspended_excise_rate
+    kind: parameter
+    dtype: Rate
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "reduces the excise duty on clear beer made from malt to 20% from 40%"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.20
+
+  - name: cassava_clear_beer_suspended_excise_rate
+    kind: parameter
+    dtype: Rate
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "clear beer made from cassava to 5% from 10%"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          0.05
+
+  - name: small_medium_clear_beer_manufacturer
+    kind: derived
+    entity: Business
+    dtype: Judgment
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: definition
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "licensed small scale local brewery manufacturing not more than 500,000 hectolitres"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          business_is_licensed_small_scale_local_brewery
+          and annual_clear_beer_production_hectolitres <= small_medium_manufacturer_annual_production_cap
+
+  - name: brewer_manufactures_excess_quantities
+    kind: derived
+    entity: Business
+    dtype: Judgment
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: definition
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "clear beer manufactured by a brewer from cassava in excess of 458,138 hectolitres and 2,287,102 hectolitres manufactured from malt per annum"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          annual_cassava_clear_beer_production_hectolitres > cassava_brewer_excess_quantity_threshold
+          or annual_malt_clear_beer_production_hectolitres > malt_brewer_excess_quantity_threshold
+
+  - name: sorghum_clear_beer_suspension_excluded
+    kind: derived
+    entity: Business
+    dtype: Judgment
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "shall not apply to a small and medium enterprise and to a brewer that manufactures beer in excess quantities"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          clear_beer_is_made_from_sorghum
+          and (small_medium_clear_beer_manufacturer or brewer_manufactures_excess_quantities)
+
+  - name: clear_beer_excise_duty_suspension_applies
+    kind: derived
+    entity: Business
+    dtype: Judgment
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: condition
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "manufactured by a small and medium manufacturer; or (b) manufactured by a brewer in excess quantitie"
+          - path: versions[0].formula
+            kind: exception
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "shall not apply to clear beer whose duty is under remission"
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          (clear_beer_is_made_from_malt or clear_beer_is_made_from_cassava)
+          and (small_medium_clear_beer_manufacturer or brewer_manufactures_excess_quantities)
+          and not clear_beer_duty_is_under_remission
+          and not sorghum_clear_beer_suspension_excluded
+
+  - name: applicable_malt_clear_beer_excise_rate
+    kind: derived
+    entity: Business
+    dtype: Rate
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "reduces the excise duty on clear beer made from malt to 20% from 40%"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if clear_beer_excise_duty_suspension_applies and clear_beer_is_made_from_malt: malt_clear_beer_suspended_excise_rate else: 0
+
+  - name: applicable_cassava_clear_beer_excise_rate
+    kind: derived
+    entity: Business
+    dtype: Rate
+    period: Year
+    source: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations(a)
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+              excerpt: "clear beer made from cassava to 5% from 10%"
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/policy/zra-pn-2024-1/clear-beer-suspension-regulations
+    versions:
+      - effective_from: '2024-01-01'
+        formula: |-
+          if clear_beer_excise_duty_suspension_applies and clear_beer_is_made_from_cassava: cassava_clear_beer_suspended_excise_rate else: 0

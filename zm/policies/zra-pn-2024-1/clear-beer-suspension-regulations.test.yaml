@@ -1,0 +1,78 @@
+- name: small_manufacturer_malt_beer_receives_suspended_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2024-01-01'
+    end: '2024-12-31'
+  input:
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.business_is_licensed_small_scale_local_brewery: true
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_clear_beer_production_hectolitres: 500000
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_cassava_clear_beer_production_hectolitres: 0
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_malt_clear_beer_production_hectolitres: 500000
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_malt: true
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_cassava: false
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_sorghum: false
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_duty_is_under_remission: false
+  output:
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#small_medium_clear_beer_manufacturer: holds
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#brewer_manufactures_excess_quantities: not_holds
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#sorghum_clear_beer_suspension_excluded: not_holds
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#clear_beer_excise_duty_suspension_applies: holds
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#applicable_malt_clear_beer_excise_rate: 0.2
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#applicable_cassava_clear_beer_excise_rate: 0
+- name: excess_cassava_beer_receives_suspended_rate
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2024-01-01'
+    end: '2024-12-31'
+  input:
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.business_is_licensed_small_scale_local_brewery: false
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_clear_beer_production_hectolitres: 600000
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_cassava_clear_beer_production_hectolitres: 500000
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_malt_clear_beer_production_hectolitres: 0
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_malt: false
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_cassava: true
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_sorghum: false
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_duty_is_under_remission: false
+  output:
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#small_medium_clear_beer_manufacturer: not_holds
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#brewer_manufactures_excess_quantities: holds
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#clear_beer_excise_duty_suspension_applies: holds
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#applicable_cassava_clear_beer_excise_rate: 0.05
+- name: remission_blocks_clear_beer_suspension
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2024-01-01'
+    end: '2024-12-31'
+  input:
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.business_is_licensed_small_scale_local_brewery: true
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_clear_beer_production_hectolitres: 500000
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_cassava_clear_beer_production_hectolitres: 0
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_malt_clear_beer_production_hectolitres: 500000
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_malt: true
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_cassava: false
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_sorghum: false
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_duty_is_under_remission: true
+  output:
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#clear_beer_excise_duty_suspension_applies: not_holds
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#applicable_malt_clear_beer_excise_rate: 0
+- name: sorghum_beer_is_excluded_from_suspension
+  period:
+    period_kind: custom
+    name: calendar_year
+    start: '2024-01-01'
+    end: '2024-12-31'
+  input:
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.business_is_licensed_small_scale_local_brewery: true
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_clear_beer_production_hectolitres: 500000
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_cassava_clear_beer_production_hectolitres: 0
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.annual_malt_clear_beer_production_hectolitres: 0
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_malt: false
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_cassava: false
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_is_made_from_sorghum: true
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#input.clear_beer_duty_is_under_remission: false
+  output:
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#sorghum_clear_beer_suspension_excluded: holds
+    zm:policies/zra-pn-2024-1/clear-beer-suspension-regulations#clear_beer_excise_duty_suspension_applies: not_holds

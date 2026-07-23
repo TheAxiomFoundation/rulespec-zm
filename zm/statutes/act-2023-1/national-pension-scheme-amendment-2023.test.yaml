@@ -1,0 +1,122 @@
+- name: qualifying member and post-access benefit calculations
+  period: 2023-05
+  input:
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_consents_in_writing_to_access_pre_retirement_benefit
+    : true
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_age: 45
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.pensionable_age: 55
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.monthly_contribution_count: 60
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.indexed_monthly_contributions_and_accrued_interest: 10000
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_accessed_pre_retirement_lump_sum_benefit: true
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.residual_contributions: 8000
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.contributions_after_pre_retirement_lump_sum_receipt: 2000
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.minimum_monthly_pension: 1000
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_suffers_invalidity_after_accessing_pre_retirement_lump_sum_benefit
+    : true
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.applicable_minimum_monthly_invalidity_pension: 500
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.unreduced_lump_sum_benefit: 5000
+  output:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#pre_retirement_lump_sum_entitlement: holds
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#pre_retirement_lump_sum_benefit: 2000
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#benefit_contribution_base_after_pre_retirement_access: 10000
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#minimum_retirement_pension_after_pre_retirement_access: 800
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#minimum_invalidity_pension_after_pre_retirement_access: 400
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#lump_sum_benefit_after_pre_retirement_access_reduction: 4000
+- name: written consent is required
+  period: 2023-05
+  input:
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_consents_in_writing_to_access_pre_retirement_benefit
+    : false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_age: 45
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.pensionable_age: 55
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.monthly_contribution_count: 60
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.indexed_monthly_contributions_and_accrued_interest: 10000
+  output:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#pre_retirement_lump_sum_entitlement: not_holds
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#pre_retirement_lump_sum_benefit: 0
+- name: member at pensionable age is not entitled
+  period: 2023-05
+  input:
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_consents_in_writing_to_access_pre_retirement_benefit
+    : true
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_age: 55
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.pensionable_age: 55
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.monthly_contribution_count: 60
+  output:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#pre_retirement_lump_sum_entitlement: not_holds
+- name: member below both alternative qualification thresholds is not entitled
+  period: 2023-05
+  input:
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_consents_in_writing_to_access_pre_retirement_benefit
+    : true
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_age: 44
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.pensionable_age: 55
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.monthly_contribution_count: 59
+  output:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#pre_retirement_lump_sum_entitlement: not_holds
+- name: auto_zero_benefit_contribution_base_after_pre_retirement_access
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.applicable_minimum_monthly_invalidity_pension: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.contributions_after_pre_retirement_lump_sum_receipt: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.indexed_monthly_contributions_and_accrued_interest: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_accessed_pre_retirement_lump_sum_benefit: false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_age: 0
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_consents_in_writing_to_access_pre_retirement_benefit
+    : false
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_suffers_invalidity_after_accessing_pre_retirement_lump_sum_benefit
+    : false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.minimum_monthly_pension: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.monthly_contribution_count: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.pensionable_age: false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.residual_contributions: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.unreduced_lump_sum_benefit: 0
+  output:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#benefit_contribution_base_after_pre_retirement_access: 0
+- name: auto_zero_minimum_retirement_pension_after_pre_retirement_access
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.applicable_minimum_monthly_invalidity_pension: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.contributions_after_pre_retirement_lump_sum_receipt: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.indexed_monthly_contributions_and_accrued_interest: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_accessed_pre_retirement_lump_sum_benefit: false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_age: 0
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_consents_in_writing_to_access_pre_retirement_benefit
+    : false
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_suffers_invalidity_after_accessing_pre_retirement_lump_sum_benefit
+    : false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.minimum_monthly_pension: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.monthly_contribution_count: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.pensionable_age: false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.residual_contributions: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.unreduced_lump_sum_benefit: 0
+  output:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#minimum_retirement_pension_after_pre_retirement_access: 0
+- name: auto_zero_minimum_invalidity_pension_after_pre_retirement_access
+  period:
+    period_kind: tax_year
+    start: '2026-01-01'
+    end: '2026-12-31'
+  input:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.applicable_minimum_monthly_invalidity_pension: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.contributions_after_pre_retirement_lump_sum_receipt: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.indexed_monthly_contributions_and_accrued_interest: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_accessed_pre_retirement_lump_sum_benefit: false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_age: 0
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_consents_in_writing_to_access_pre_retirement_benefit
+    : false
+    ? zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.member_suffers_invalidity_after_accessing_pre_retirement_lump_sum_benefit
+    : false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.minimum_monthly_pension: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.monthly_contribution_count: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.pensionable_age: false
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.residual_contributions: 0
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#input.unreduced_lump_sum_benefit: 0
+  output:
+    zm:statutes/act-2023-1/national-pension-scheme-amendment-2023#minimum_invalidity_pension_after_pre_retirement_access: 0

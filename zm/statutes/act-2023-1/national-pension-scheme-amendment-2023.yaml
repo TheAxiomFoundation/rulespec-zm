@@ -1,0 +1,243 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+    source_sha256: 38a9395c6a82da59a8c148892258f4ddac085ccb991c0b9c533003d36995fa9f
+  summary: "\u201CA member is entitled to a pre-retirement lump-sum benefit\u201D\
+    \ where the member consents in writing, is below pensionable age, and has made\
+    \ at least sixty monthly contributions or attained age forty-five. The benefit\
+    \ is twenty percent of indexed monthly contributions and accrued interest. Retirement\
+    \ and invalidity pension floors for members who access the benefit are eighty\
+    \ percent of the applicable minimum pension, and a later lump-sum benefit is reduced\
+    \ by twenty percent."
+rules:
+- name: minimum_monthly_contributions_for_pre_retirement_benefit
+  kind: parameter
+  dtype: Count
+  source: National Pension Scheme Act, s. 21A(1)(a), as inserted by Act No. 1 of 2023,
+    s. 6
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: made a minimum of sixty monthly contributions
+  versions:
+  - effective_from: '2023-04-18'
+    formula: '60'
+- name: alternative_minimum_age_for_pre_retirement_benefit
+  kind: parameter
+  dtype: Integer
+  source: National Pension Scheme Act, s. 21A(1)(b), as inserted by Act No. 1 of 2023,
+    s. 6
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: attained the age of forty-five
+  versions:
+  - effective_from: '2023-04-18'
+    formula: '45'
+- name: pre_retirement_lump_sum_rate
+  kind: parameter
+  dtype: Rate
+  source: National Pension Scheme Act, s. 21A(2), as inserted by Act No. 1 of 2023,
+    s. 6
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: shall be twenty percent of the indexed monthly contributions and
+            the accrued interest
+  versions:
+  - effective_from: '2023-04-18'
+    formula: '0.20'
+- name: retirement_pension_floor_rate_after_pre_retirement_access
+  kind: parameter
+  dtype: Rate
+  source: National Pension Scheme Act, s. 19A, as inserted by Act No. 1 of 2023, s.
+    5
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: shall be eighty percent of the minimum monthly pension
+  versions:
+  - effective_from: '2023-04-18'
+    formula: '0.80'
+- name: invalidity_pension_floor_rate_after_pre_retirement_access
+  kind: parameter
+  dtype: Rate
+  source: National Pension Scheme Act, s. 24(4), as inserted by Act No. 1 of 2023,
+    s. 7
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: entitled to eighty percent of the applicable minimum monthly invalidity
+            pension
+  versions:
+  - effective_from: '2023-04-18'
+    formula: '0.80'
+- name: later_lump_sum_reduction_rate_after_pre_retirement_access
+  kind: parameter
+  dtype: Rate
+  source: National Pension Scheme Act, s. 34(3), as inserted by Act No. 1 of 2023,
+    s. 8
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: shall be reduced by twenty percent
+  versions:
+  - effective_from: '2023-04-18'
+    formula: '0.20'
+- name: pre_retirement_lump_sum_entitlement
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: National Pension Scheme Act, s. 21A(1), as inserted by Act No. 1 of 2023,
+    s. 6
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: consents in writing to access a pre-retirement benefit, is below
+            pensionable age
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: is below pensionable age and has — (a) made a minimum of sixty
+            monthly contributions; or (b) attained the age of forty-five
+  versions:
+  - effective_from: '2023-04-18'
+    formula: 'member_consents_in_writing_to_access_pre_retirement_benefit
+
+      and member_age < pensionable_age
+
+      and (monthly_contribution_count >= minimum_monthly_contributions_for_pre_retirement_benefit
+
+      or member_age >= alternative_minimum_age_for_pre_retirement_benefit)'
+- name: pre_retirement_lump_sum_benefit
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Month
+  source: National Pension Scheme Act, s. 21A(2), as inserted by Act No. 1 of 2023,
+    s. 6
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: twenty percent of the indexed monthly contributions and the accrued
+            interest
+  versions:
+  - effective_from: '2023-04-18'
+    formula: 'if pre_retirement_lump_sum_entitlement: pre_retirement_lump_sum_rate
+      * indexed_monthly_contributions_and_accrued_interest else: 0'
+- name: benefit_contribution_base_after_pre_retirement_access
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Month
+  source: National Pension Scheme Act, s. 21A(3), as inserted by Act No. 1 of 2023,
+    s. 6
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: "based on a member\u2019s residual contributions and contributions\
+            \ made after the receipt"
+  versions:
+  - effective_from: '2023-04-18'
+    formula: 'if member_accessed_pre_retirement_lump_sum_benefit: residual_contributions
+      + contributions_after_pre_retirement_lump_sum_receipt else: 0'
+- name: minimum_retirement_pension_after_pre_retirement_access
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Month
+  source: National Pension Scheme Act, s. 19A, as inserted by Act No. 1 of 2023, s.
+    5
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: eighty percent of the minimum monthly pension
+  versions:
+  - effective_from: '2023-04-18'
+    formula: 'if member_accessed_pre_retirement_lump_sum_benefit: retirement_pension_floor_rate_after_pre_retirement_access
+      * minimum_monthly_pension else: 0'
+- name: minimum_invalidity_pension_after_pre_retirement_access
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Month
+  source: National Pension Scheme Act, s. 24(4), as inserted by Act No. 1 of 2023,
+    s. 7
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: eighty percent of the applicable minimum monthly invalidity pension
+  versions:
+  - effective_from: '2023-04-18'
+    formula: 'if member_suffers_invalidity_after_accessing_pre_retirement_lump_sum_benefit:
+      invalidity_pension_floor_rate_after_pre_retirement_access * applicable_minimum_monthly_invalidity_pension
+      else: 0'
+- name: lump_sum_benefit_after_pre_retirement_access_reduction
+  kind: derived
+  entity: Person
+  dtype: Money
+  period: Month
+  source: National Pension Scheme Act, s. 34(3), as inserted by Act No. 1 of 2023,
+    s. 8
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: formula
+        source:
+          corpus_citation_path: zm/statute/act-2023-1/national-pension-scheme-amendment-2023
+          excerpt: the lump-sum benefit payable to a member who accesses a pre- retirement
+            benefit shall be reduced by twenty percent
+  versions:
+  - effective_from: '2023-04-18'
+    formula: 'if member_accessed_pre_retirement_lump_sum_benefit: max(0, unreduced_lump_sum_benefit
+      * (1 - later_lump_sum_reduction_rate_after_pre_retirement_access)) else: unreduced_lump_sum_benefit'

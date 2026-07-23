@@ -1,0 +1,525 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+    source_sha256: 8b9307b88247b939d58a24b86c202b0b72d297c0be97b9d774886310ca9f07ce
+  summary: |-
+    “These Regulations shall come into operation on 1st January, 2026.”
+    The substituted schedules specify national average monthly earnings of K9,309.00, a social security ceiling of K37,236.00, minimum total monthly contributions of K1.50, and maximum total monthly contributions of K3,723.60 for 1st January through 31st December 2026. The contribution-table notes state that the employee’s and employer’s shares shall each be calculated as five percent of the employee’s total pensionable earnings without first rounding earnings or contribution amounts to the nearest Kwacha.
+rules:
+  - name: national_average_monthly_earnings
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: ZMW
+    source: First Schedule (Regulation 3), substituted by regulation 2 and Appendix I
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "National Average Monthly Earnings Period K9,309.00 1st January, 2026 —31st December, 2026"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "1st January, 2026—31st December, 2026"
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          9309.00
+
+  - name: monthly_social_security_ceiling
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: ZMW
+    source: Second Schedule (Regulation 4), substituted by regulation 2 and Appendix II
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "Social Security Ceiling Period K37,236.00 1st January, 2026 —31st December, 2026"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "1st January, 2026—31st December, 2026"
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          37236.00
+
+  - name: minimum_total_monthly_contribution
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: ZMW
+    source: Third Schedule (Regulation 5), substituted by regulation 2 and Appendix III
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "Minimum Total Monthly Contributions Period K1.50 1st January, 2026—31st December, 2026"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "1st January, 2026—31st December, 2026"
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1.50
+
+  - name: maximum_total_monthly_contribution
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: ZMW
+    source: Fourth Schedule (Regulation 6), substituted by regulation 2 and Appendix IV
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "Maximum Total Monthly Contributions Period K3,723.60 1st January, 2026 —31st December, 2026"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "1st January, 2026—31st December, 2026"
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          3723.60
+
+  - name: employee_contribution_rate
+    kind: parameter
+    dtype: Rate
+    source: Fifth Schedule, contribution-table Note 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "The amounts of the employee’s and employer’s share shall be calculated respectively as five percent of the employee’s total pensionable earnings."
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0.05
+
+  - name: employer_contribution_rate
+    kind: parameter
+    dtype: Rate
+    source: Fifth Schedule, contribution-table Note 1
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: parameter
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "The amounts of the employee’s and employer’s share shall be calculated respectively as five percent of the employee’s total pensionable earnings."
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          0.05
+
+  - name: maximum_monthly_employee_contribution
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: ZMW
+    source: Fifth Schedule, Part I contribution table, social-security-ceiling row
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "37,236.00 1,861.80 1,861.80 3,723.60"
+              table:
+                header: "Contribution Table for Employees Paid Monthly"
+                row: "Employee’s total pensionable earnings K37,236.00"
+                column: "Employee’s share of contribution"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1861.80
+
+  - name: maximum_monthly_employer_contribution
+    kind: parameter
+    dtype: Money
+    period: Month
+    unit: ZMW
+    source: Fifth Schedule, Part I contribution table, social-security-ceiling row
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "37,236.00 1,861.80 1,861.80 3,723.60"
+              table:
+                header: "Contribution Table for Employees Paid Monthly"
+                row: "Employee’s total pensionable earnings K37,236.00"
+                column: "Employer’s share of contribution"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1861.80
+
+  - name: fortnightly_social_security_ceiling
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Fifth Schedule, Part II contribution table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "18,618.00 930.90 930.90 1,861.80"
+              table:
+                header: "Contribution Table for Employees Paid Fortnightly for the Period 1st January to 31st December, 2026"
+                row: "Employee’s total pensionable earnings K18,618.00"
+                column: "Employee’s total pensionable earnings"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          18618.00
+
+  - name: maximum_fortnightly_employee_contribution
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Fifth Schedule, Part II contribution table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "18,618.00 930.90 930.90 1,861.80"
+              table:
+                header: "Contribution Table for Employees Paid Fortnightly for the Period 1st January to 31st December, 2026"
+                row: "Employee’s total pensionable earnings K18,618.00"
+                column: "Employee’s share of contribution"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          930.90
+
+  - name: maximum_fortnightly_employer_contribution
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Fifth Schedule, Part II contribution table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "18,618.00 930.90 930.90 1,861.80"
+              table:
+                header: "Contribution Table for Employees Paid Fortnightly for the Period 1st January to 31st December, 2026"
+                row: "Employee’s total pensionable earnings K18,618.00"
+                column: "Employer’s share of contribution"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          930.90
+
+  - name: maximum_total_fortnightly_contribution
+    kind: parameter
+    dtype: Money
+    unit: ZMW
+    source: Fifth Schedule, Part II contribution table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "18,618.00 930.90 930.90 1,861.80"
+              table:
+                header: "Contribution Table for Employees Paid Fortnightly for the Period 1st January to 31st December, 2026"
+                row: "Employee’s total pensionable earnings K18,618.00"
+                column: "Total contribution"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          1861.80
+
+  - name: weekly_social_security_ceiling
+    kind: parameter
+    dtype: Money
+    period: Week
+    unit: ZMW
+    source: Fifth Schedule, Part III contribution table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "9,309.00 465.45 465.45 930.90"
+              table:
+                header: "Contribution Table for Employees Paid Weekly for the Period of 1st January to 31st December, 2026"
+                row: "Employee’s total pensionable earnings K9,309.00"
+                column: "Employee’s total pensionable earnings"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          9309.00
+
+  - name: maximum_weekly_employee_contribution
+    kind: parameter
+    dtype: Money
+    period: Week
+    unit: ZMW
+    source: Fifth Schedule, Part III contribution table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "9,309.00 465.45 465.45 930.90"
+              table:
+                header: "Contribution Table for Employees Paid Weekly for the Period of 1st January to 31st December, 2026"
+                row: "Employee’s total pensionable earnings K9,309.00"
+                column: "Employee’s share of contribution"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          465.45
+
+  - name: maximum_weekly_employer_contribution
+    kind: parameter
+    dtype: Money
+    period: Week
+    unit: ZMW
+    source: Fifth Schedule, Part III contribution table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "9,309.00 465.45 465.45 930.90"
+              table:
+                header: "Contribution Table for Employees Paid Weekly for the Period of 1st January to 31st December, 2026"
+                row: "Employee’s total pensionable earnings K9,309.00"
+                column: "Employer’s share of contribution"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          465.45
+
+  - name: maximum_total_weekly_contribution
+    kind: parameter
+    dtype: Money
+    period: Week
+    unit: ZMW
+    source: Fifth Schedule, Part III contribution table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: table_cell
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "9,309.00 465.45 465.45 930.90"
+              table:
+                header: "Contribution Table for Employees Paid Weekly for the Period of 1st January to 31st December, 2026"
+                row: "Employee’s total pensionable earnings K9,309.00"
+                column: "Total contribution"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          930.90
+
+  - name: monthly_employee_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: ZMW
+    source: Fifth Schedule, Part I and contribution-table Notes 1 and 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "The amounts of the employee’s and employer’s share shall be calculated respectively as five percent of the employee’s total pensionable earnings."
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "37,236.00 1,861.80 1,861.80 3,723.60"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          min(
+            employee_contribution_rate * min(max(0, monthly_pensionable_earnings), monthly_social_security_ceiling),
+            maximum_monthly_employee_contribution
+          )
+
+  - name: monthly_employer_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: ZMW
+    source: Fifth Schedule, Part I and contribution-table Notes 1 and 2
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "The amounts of the employee’s and employer’s share shall be calculated respectively as five percent of the employee’s total pensionable earnings."
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "37,236.00 1,861.80 1,861.80 3,723.60"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          min(
+            employer_contribution_rate * min(max(0, monthly_pensionable_earnings), monthly_social_security_ceiling),
+            maximum_monthly_employer_contribution
+          )
+
+  - name: total_monthly_contribution
+    kind: derived
+    entity: Person
+    dtype: Money
+    period: Month
+    unit: ZMW
+    source: Fifth Schedule, Part I contribution table
+    metadata:
+      proof:
+        atoms:
+          - path: versions[0].formula
+            kind: formula
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "Employee’s total Employee’s share Employers share Total pensionable earnings of contribution of contribution contribution"
+          - path: versions[0].formula
+            kind: amount
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "37,236.00 1,861.80 1,861.80 3,723.60"
+          - path: versions[0].effective_from
+            kind: effective_period
+            source:
+              corpus_citation_path: zm/regulation/si-2025-103/pensionable-earnings-amendment-2025
+              excerpt: "These Regulations shall come into operationon on 1st January, 2026."
+    versions:
+      - effective_from: '2026-01-01'
+        formula: |-
+          min(
+            monthly_employee_contribution + monthly_employer_contribution,
+            maximum_total_monthly_contribution
+          )
