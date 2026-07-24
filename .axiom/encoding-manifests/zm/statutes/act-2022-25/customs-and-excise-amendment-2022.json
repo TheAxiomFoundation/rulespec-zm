@@ -1,0 +1,110 @@
+{
+  "applied_files": [
+    {
+      "path": "zm/statutes/act-2022-25/customs-and-excise-amendment-2022.yaml",
+      "sha256": "bca9d024652acd1058c7a2b26125aa11de9c99309f03f6fb827a894e6aed67b0"
+    },
+    {
+      "path": "zm/statutes/act-2022-25/customs-and-excise-amendment-2022.test.yaml",
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76",
+    "dirty_tracked": false,
+    "identity_source": "trusted-runtime-attestation",
+    "root": "/opt/axiom-verification/python/runtime-attestation.json",
+    "version": "0.2.1302",
+    "version_commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76"
+  },
+  "axiom_encode_version": "0.2.1302",
+  "backend": "openai",
+  "citation": "zm/statute/act-2022-25/customs-and-excise-amendment-2022",
+  "context_manifest_file": "/tmp/axiom-encode-encodings/_eval_workspaces/openai-gpt-5.6-terra/zm-statute-act-2022-25-customs-and-excise-amendment-2022/workspace/context-manifest.json",
+  "context_manifest_sha256": "55f7a95e0afd1607fe47c4f63c9285574243497ff540a7ba6f1ce0c7dd4ae3dd",
+  "generated_at": "2026-07-21T16:39:56.394079+00:00",
+  "generated_output_file": "/tmp/axiom-encode-encodings/openai-gpt-5.6-terra/statutes/act-2022-25/customs-and-excise-amendment-2022.yaml",
+  "generated_output_root": "/tmp/axiom-encode-encodings",
+  "generated_output_sha256": "bca9d024652acd1058c7a2b26125aa11de9c99309f03f6fb827a894e6aed67b0",
+  "generation_prompt_sha256": "9c82941c4952af8ee44d45cf2f792a919b94523572597c0a32024bca0f7c691a",
+  "model": "gpt-5.6-terra",
+  "run_id": "deedc8a0",
+  "runner": "openai-gpt-5.6-terra",
+  "schema_version": "axiom-encode/applied-rulespec/v5",
+  "signature": {
+    "algorithm": "ed25519-domain-v1",
+    "key_id": "sha256:24a78725a23b1c83cfc38bdc22f75401d8008e7a8477796b55179d1fc79c4d9a",
+    "value": "Jbg6uTnmVYyfuJRLzbfgI8lzGuSFJguqjbsa0SUEGbNYuP2v/1f4XmnFxr2cZcfAmNr16DerYlsetQ5uutzVCA=="
+  },
+  "source_attestation": {
+    "component_rows": [
+      {
+        "body_sha256": "df51731b5b5fb9e210e33183109a6d1fd4e061d229f8c90e105fa5946ac55f78",
+        "citation_path": "zm/statute/act-2022-25/customs-and-excise-amendment-2022/document-1",
+        "document_class": "statute",
+        "expression_date": "2023-01-01",
+        "jurisdiction": "zm",
+        "line_number": 6,
+        "provision_file": "data/corpus/provisions/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes.jsonl",
+        "provision_file_sha256": "b41a67b4107d03368967419a0021ded5d8e7b61a6f712a29f435abaecd8d1b7a",
+        "record_id": "b8239ebc-4189-50df-a8ac-9fb827074061",
+        "source_as_of": "2026-07-09",
+        "source_path": "sources/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes/official-documents/zm-act-2022-25-customs-and-excise-amendment.pdf",
+        "version": "2026-07-09-zm-customs-excise-and-vat-statutes"
+      }
+    ],
+    "corpus_release": "zm-rulespec-2026-07-12",
+    "corpus_release_content_sha256": "62d7a3e73dd9e469eb919d419a6ef11518515c42c099c07d23af654b303c92b5",
+    "corpus_release_selector_sha256": "d7acbb7ae0df24635beaaa239a611e4cc9e960a252cf053f3ef52feb8f60096e",
+    "corpus_source": "local",
+    "expression_date": "2023-01-01",
+    "generation_input_sha256": "df51731b5b5fb9e210e33183109a6d1fd4e061d229f8c90e105fa5946ac55f78",
+    "provision_file": "data/corpus/provisions/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes.jsonl",
+    "provision_file_sha256": "b41a67b4107d03368967419a0021ded5d8e7b61a6f712a29f435abaecd8d1b7a",
+    "requested_corpus_citation_path": "zm/statute/act-2022-25/customs-and-excise-amendment-2022",
+    "resolved_corpus_citation_path": "zm/statute/act-2022-25/customs-and-excise-amendment-2022",
+    "resolved_text_sha256": "df51731b5b5fb9e210e33183109a6d1fd4e061d229f8c90e105fa5946ac55f78",
+    "row": {
+      "body_sha256": null,
+      "citation_path": "zm/statute/act-2022-25/customs-and-excise-amendment-2022",
+      "document_class": "statute",
+      "expression_date": "2023-01-01",
+      "jurisdiction": "zm",
+      "line_number": 5,
+      "provision_file": "data/corpus/provisions/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes.jsonl",
+      "provision_file_sha256": "b41a67b4107d03368967419a0021ded5d8e7b61a6f712a29f435abaecd8d1b7a",
+      "record_id": "ea733ca9-5997-5e5f-96c2-358cebf574e8",
+      "source_as_of": "2026-07-09",
+      "source_path": "sources/zm/statute/2026-07-09-zm-customs-excise-and-vat-statutes/official-documents/zm-act-2022-25-customs-and-excise-amendment.pdf",
+      "version": "2026-07-09-zm-customs-excise-and-vat-statutes"
+    },
+    "rulespec_root": "rulespec-zm/zm",
+    "source_as_of": "2026-07-09",
+    "source_sha256": "df51731b5b5fb9e210e33183109a6d1fd4e061d229f8c90e105fa5946ac55f78"
+  },
+  "tool": "axiom-encode encode --apply",
+  "trace_file": "/tmp/axiom-encode-encodings/traces/openai-gpt-5.6-terra/zm-statute-act-2022-25-customs-and-excise-amendment-2022.json",
+  "trace_sha256": "fc3a3ff712315daaa8539170a706049bada944c5fc09f14ca4981feaada90fa4",
+  "validation_execution": {
+    "axiom_encode": {
+      "commit": "aff8d708a76e17957c1d237d2ad86cbff7620c76",
+      "identity_source": "trusted-runtime-attestation",
+      "repository": "github.com/TheAxiomFoundation/axiom-encode",
+      "version": "0.2.1302"
+    },
+    "axiom_rules_engine": {
+      "commit": "05eac9d2f89dabe5c6673176260762cef3a58f47",
+      "repository": "github.com/TheAxiomFoundation/axiom-rules-engine"
+    },
+    "policy_pre_apply": {
+      "pre_apply_content_sha256": "37b2ab6e0bbe273a5b429531224a66cb48a0daf172b264e5d2d4bf9200f0edd0",
+      "pre_apply_file_count": 24,
+      "rulespec_root": "rulespec-zm/zm",
+      "toolchain_contract_sha256": "0645004e7d59c19f3a0313f2458814a0b5a71146fb08075f639fe2f8bd5e31bf",
+      "validation_waiver_set_sha256": "15c2e6e3e4b38557e651405958bbb5b68c75c1f2b7b45cca60adcb80ab8b3962"
+    },
+    "rulespec_dependencies": [],
+    "schema": "axiom-encode/apply-validation-execution/v1"
+  },
+  "validation_waiver_set_sha256": "15c2e6e3e4b38557e651405958bbb5b68c75c1f2b7b45cca60adcb80ab8b3962"
+}
