@@ -1,0 +1,110 @@
+{
+  "applied_files": [
+    {
+      "path": "zm/statutes/act-2018-2/national-health-insurance-act-2018.yaml",
+      "sha256": "080c154f30d941fbbb732a2e35bf69e4dbff0b4bf08c417d1da32d4028d122ac"
+    },
+    {
+      "path": "zm/statutes/act-2018-2/national-health-insurance-act-2018.test.yaml",
+      "sha256": "3664cf65b9dc5b58f19d9cd91b591f183748b7aaa75058e00fc357139121e87f"
+    }
+  ],
+  "axiom_encode_git": {
+    "commit": "b9d376684cfb5e86202daa3451b8fc716703ed19",
+    "dirty_tracked": false,
+    "identity_source": "trusted-runtime-attestation",
+    "root": "/opt/axiom-verification/python/runtime-attestation.json",
+    "version": "0.2.1327",
+    "version_commit": "b9d376684cfb5e86202daa3451b8fc716703ed19"
+  },
+  "axiom_encode_version": "0.2.1327",
+  "backend": "openai",
+  "citation": "zm/statute/act-2018-2/national-health-insurance-act-2018",
+  "context_manifest_file": "/tmp/axiom-encode-encodings/_eval_workspaces/openai-gpt-5.6-terra/zm-statute-act-2018-2-national-health-insurance-act-2018/workspace/context-manifest.json",
+  "context_manifest_sha256": "145a48447d0dd1573a7373a1c8c6ce2a56f62beac11d1fc27d63dbd5bf328433",
+  "generated_at": "2026-07-23T13:12:19.553084+00:00",
+  "generated_output_file": "/tmp/axiom-encode-encodings/openai-gpt-5.6-terra/statutes/act-2018-2/national-health-insurance-act-2018.yaml",
+  "generated_output_root": "/tmp/axiom-encode-encodings",
+  "generated_output_sha256": "080c154f30d941fbbb732a2e35bf69e4dbff0b4bf08c417d1da32d4028d122ac",
+  "generation_prompt_sha256": "6f668638ffd058870e39012e2e69d41da8bce11548ff1f5c416cf193a6b5dbe8",
+  "model": "gpt-5.6-terra",
+  "run_id": "7767c4af",
+  "runner": "openai-gpt-5.6-terra",
+  "schema_version": "axiom-encode/applied-rulespec/v5",
+  "signature": {
+    "algorithm": "ed25519-domain-v1",
+    "key_id": "sha256:24a78725a23b1c83cfc38bdc22f75401d8008e7a8477796b55179d1fc79c4d9a",
+    "value": "zup5XY4skSg/XkwH6q8xkhGD61pN+D6kG3UOaGLqngD4UEcbtvK3ZQg4R4zfvmXzUa0/dkjrTcv8TyPpsn4MAw=="
+  },
+  "source_attestation": {
+    "component_rows": [
+      {
+        "body_sha256": "5326c6e14652cace444a19b390a44f1f384e5ce79d9ba47204d8f3a22e2c02fc",
+        "citation_path": "zm/statute/act-2018-2/national-health-insurance-act-2018/document-1",
+        "document_class": "statute",
+        "expression_date": "2018-04-09",
+        "jurisdiction": "zm",
+        "line_number": 6,
+        "provision_file": "data/corpus/provisions/zm/statute/2026-07-08-zm-napsa-nhima-statutes.jsonl",
+        "provision_file_sha256": "a21bdf03008af371a5683658af015bc05f836dbde9fd3c0b4efc080f85c805ec",
+        "record_id": "83ebf9ab-2237-538f-a7af-c960af96f805",
+        "source_as_of": "2026-07-08",
+        "source_path": "sources/zm/statute/2026-07-08-zm-napsa-nhima-statutes/official-documents/zm-act-2018-2-national-health-insurance-act.pdf",
+        "version": "2026-07-08-zm-napsa-nhima-statutes"
+      }
+    ],
+    "corpus_release": "zm-rulespec-2026-07-12",
+    "corpus_release_content_sha256": "62d7a3e73dd9e469eb919d419a6ef11518515c42c099c07d23af654b303c92b5",
+    "corpus_release_selector_sha256": "d7acbb7ae0df24635beaaa239a611e4cc9e960a252cf053f3ef52feb8f60096e",
+    "corpus_source": "local",
+    "expression_date": "2018-04-09",
+    "generation_input_sha256": "5326c6e14652cace444a19b390a44f1f384e5ce79d9ba47204d8f3a22e2c02fc",
+    "provision_file": "data/corpus/provisions/zm/statute/2026-07-08-zm-napsa-nhima-statutes.jsonl",
+    "provision_file_sha256": "a21bdf03008af371a5683658af015bc05f836dbde9fd3c0b4efc080f85c805ec",
+    "requested_corpus_citation_path": "zm/statute/act-2018-2/national-health-insurance-act-2018",
+    "resolved_corpus_citation_path": "zm/statute/act-2018-2/national-health-insurance-act-2018",
+    "resolved_text_sha256": "5326c6e14652cace444a19b390a44f1f384e5ce79d9ba47204d8f3a22e2c02fc",
+    "row": {
+      "body_sha256": null,
+      "citation_path": "zm/statute/act-2018-2/national-health-insurance-act-2018",
+      "document_class": "statute",
+      "expression_date": "2018-04-09",
+      "jurisdiction": "zm",
+      "line_number": 5,
+      "provision_file": "data/corpus/provisions/zm/statute/2026-07-08-zm-napsa-nhima-statutes.jsonl",
+      "provision_file_sha256": "a21bdf03008af371a5683658af015bc05f836dbde9fd3c0b4efc080f85c805ec",
+      "record_id": "84766df0-ac9f-552e-89b2-00200e97a181",
+      "source_as_of": "2026-07-08",
+      "source_path": "sources/zm/statute/2026-07-08-zm-napsa-nhima-statutes/official-documents/zm-act-2018-2-national-health-insurance-act.pdf",
+      "version": "2026-07-08-zm-napsa-nhima-statutes"
+    },
+    "rulespec_root": "rulespec-zm/zm",
+    "source_as_of": "2026-07-08",
+    "source_sha256": "5326c6e14652cace444a19b390a44f1f384e5ce79d9ba47204d8f3a22e2c02fc"
+  },
+  "tool": "axiom-encode encode --apply",
+  "trace_file": "/tmp/axiom-encode-encodings/traces/openai-gpt-5.6-terra/zm-statute-act-2018-2-national-health-insurance-act-2018.json",
+  "trace_sha256": "52a10bcfdcb5564cc22daab135081ecdd1a88bf9857ddc9b768141511f79fd69",
+  "validation_execution": {
+    "axiom_encode": {
+      "commit": "b9d376684cfb5e86202daa3451b8fc716703ed19",
+      "identity_source": "trusted-runtime-attestation",
+      "repository": "github.com/TheAxiomFoundation/axiom-encode",
+      "version": "0.2.1327"
+    },
+    "axiom_rules_engine": {
+      "commit": "05eac9d2f89dabe5c6673176260762cef3a58f47",
+      "repository": "github.com/TheAxiomFoundation/axiom-rules-engine"
+    },
+    "policy_pre_apply": {
+      "pre_apply_content_sha256": "cfa961283d6dbe411b47faa1a3822c561dc9a1e0bdc97a72b9786bdbde811427",
+      "pre_apply_file_count": 30,
+      "rulespec_root": "rulespec-zm/zm",
+      "toolchain_contract_sha256": "0645004e7d59c19f3a0313f2458814a0b5a71146fb08075f639fe2f8bd5e31bf",
+      "validation_waiver_set_sha256": "15c2e6e3e4b38557e651405958bbb5b68c75c1f2b7b45cca60adcb80ab8b3962"
+    },
+    "rulespec_dependencies": [],
+    "schema": "axiom-encode/apply-validation-execution/v1"
+  },
+  "validation_waiver_set_sha256": "15c2e6e3e4b38557e651405958bbb5b68c75c1f2b7b45cca60adcb80ab8b3962"
+}

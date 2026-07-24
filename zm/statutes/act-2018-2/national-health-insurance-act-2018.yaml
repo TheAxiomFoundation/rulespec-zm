@@ -1,0 +1,111 @@
+format: rulespec/v1
+module:
+  proof_validation:
+    required: true
+  source_verification:
+    corpus_citation_path: zm/statute/act-2018-2/national-health-insurance-act-2018
+    source_sha256: 5326c6e14652cace444a19b390a44f1f384e5ce79d9ba47204d8f3a22e2c02fc
+  summary: '“A citizen or established resident who is above eighteen years shall be
+    registered as a member of the Scheme.”
+
+    “A citizen or established resident that may be exempted from payment of contributions
+    under the Scheme include— ... an elderly person above the age of 65 ...”'
+  deferred_outputs:
+  - output: zm:statutes/act-2018-2/national-health-insurance-act-2018/f#board_business_plan_approval
+    reason: Section 7(f) imposes an administrative Board approval function for Authority
+      business plans and supplies no computable eligibility, amount, or compliance-state
+      output.
+  - output: zm:statutes/act-2018-2/national-health-insurance-act-2018/c#membership_financial_status_update
+    reason: Section 23(c) requires a member to provide updated information after a
+      financial-status modification; the reporting process and the changed information
+      are administrative and not representable as a computable output.
+  - output: zm:statutes/act-2018-2/national-health-insurance-act-2018/f#registration_failure_offence
+    reason: Section 53(1)(f) creates an offence for failure to register or ensure
+      registration within a period specified by or under the Act; determining the
+      operative registration duty, responsible actor, and specified period requires
+      administrative and cross-provisional facts not represented by this module.
+rules:
+- name: membership_age_threshold
+  kind: parameter
+  dtype: Integer
+  source: zm/statute/act-2018-2/national-health-insurance-act-2018/13(1)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2018-2/national-health-insurance-act-2018
+          excerpt: above eighteen years
+  versions:
+  - effective_from: '0001-01-01'
+    formula: '18'
+- name: elderly_contribution_exemption_age_threshold
+  kind: parameter
+  dtype: Integer
+  source: zm/statute/act-2018-2/national-health-insurance-act-2018/16(b)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2018-2/national-health-insurance-act-2018
+          excerpt: an elderly person above the age of 65
+  versions:
+  - effective_from: '0001-01-01'
+    formula: '65'
+- name: person_required_to_be_registered_as_member
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: zm/statute/act-2018-2/national-health-insurance-act-2018/13(1)
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: zm/statute/act-2018-2/national-health-insurance-act-2018
+          excerpt: A citizen or established resident who is above eighteen years shall
+            be registered as a member
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2018-2/national-health-insurance-act-2018
+          excerpt: above eighteen years
+  versions:
+  - effective_from: '0001-01-01'
+    formula: '(person_is_citizen or person_is_established_resident)
+
+      and person_age > membership_age_threshold'
+- name: person_is_in_contribution_exemption_category
+  kind: derived
+  entity: Person
+  dtype: Judgment
+  period: Month
+  source: zm/statute/act-2018-2/national-health-insurance-act-2018/16
+  metadata:
+    proof:
+      atoms:
+      - path: versions[0].formula
+        kind: condition
+        source:
+          corpus_citation_path: zm/statute/act-2018-2/national-health-insurance-act-2018
+          excerpt: may be exempted from payment of contributions under the Scheme
+            include
+      - path: versions[0].formula
+        kind: parameter
+        source:
+          corpus_citation_path: zm/statute/act-2018-2/national-health-insurance-act-2018
+          excerpt: an elderly person above the age of 65
+  versions:
+  - effective_from: '0001-01-01'
+    formula: 'person_is_mentally_or_physically_disabled_and_unable_to_work
+
+      or person_age > elderly_contribution_exemption_age_threshold
+
+      or person_is_classified_as_poor_and_vulnerable_by_social_welfare_ministry
+
+      or person_is_prescribed_by_minister_for_contribution_exemption'
