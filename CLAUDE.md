@@ -19,7 +19,7 @@ This repo stores Zambia RuleSpec source registry materials, oracle references, a
 - Add RuleSpec under `zm/statutes/`, `zm/regulations/`, or `zm/policies/` with companion `.test.yaml` files.
 - Keep source law provenance in corpus artifacts and cite those corpus paths from RuleSpec modules via `module.source_verification.corpus_citation_path` (or `corpus_citation_paths` for multi-instrument modules).
 - Use CY2025 as the validation year for encoded amounts (Zambia's charge year is the calendar year; the December amendment package commences 1 January). MicroZAMOD system ZM_2025 corresponds to CY2025. Indexed/annual values must be corpus-grounded, never invented.
-- Keep exact oracle versions in `data/oracles/oracle-index.json`. The MicroZAMOD bundle (SOUTHMOD A4.0) is licensed and non-redistributable — never commit bundle bytes, dataset rows, or model XML; only comparison statistics and MicroZAMOD-produced values may be recorded.
+- Keep exact oracle versions in `data/oracles/oracle-index.json`. MicroZAMOD is wired through axiom-oracles' manual-lane suites; the SOUTHMOD A4.0 bundle is licensed and non-redistributable. Record only MicroZAMOD output variable names used as comparison bindings, outputs observed on synthetic households, and comparison statistics. Never commit bundle files, dataset rows, microdata-derived statistics, or model content (parameter names or values, policy/function names, conditions, income-list compositions, DRD text). `tests/test_southmod_licence.py` fails CI on the syntactic forms of model content.
 - Sync `axiom-encode` and `.axiom/toolchain.toml` before substantial encoding runs.
 
 ## Do Not

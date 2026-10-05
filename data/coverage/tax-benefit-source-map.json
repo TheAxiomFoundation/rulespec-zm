@@ -1,16 +1,227 @@
 {
-  "generated_at": "2026-07-08",
+  "generated_at": "2026-10-04",
   "jurisdiction": "zm",
-  "validation_year": "FY2025/26",
-  "note": "MicroZAMOD UG_2025 active-instrument map to governing Zambia law. Instrument keys are the model's EUROMOD-convention policy names (structure metadata only; no licensed content). Source URLs are hunting grounds, not captured provenance - capture happens in axiom-corpus manifests.",
-  "instruments": [
-    {"instrument": "tin_ug (PAYE income tax)", "outputs": ["tin_s", "ttb_s"], "governing_law": "Income Tax Act (Cap 340), Third Schedule Part I (resident individual rates); s.19-22 employment income; annual amendment acts", "status": "not_captured"},
-    {"instrument": "tpr_ug (rental income tax)", "outputs": ["tpr_s"], "governing_law": "Income Tax Act (Cap 340) rental income regime (s.5(3), s.22(1)(c) as amended; 2021-2024 amendment acts changed rate and deduction structure)", "status": "not_captured"},
-    {"instrument": "ttn_ug (presumptive tax)", "outputs": ["ttn_s", "ttntb_s"], "governing_law": "Income Tax Act (Cap 340), s.4(5) + Second Schedule small-business taxpayer rates as amended", "status": "not_captured"},
-    {"instrument": "tscee_ug / tscer_ug (NSSF contributions)", "outputs": ["tscee_s", "tscer_s"], "governing_law": "National Social Security Fund Act (Cap 230), ss.11-12 (5% employee / 10% employer standard contributions); NSSF (Amendment) Act 2022", "status": "not_captured"},
-    {"instrument": "tgv_ug (Local Service Tax)", "outputs": ["tgv_s"], "governing_law": "Local Governments Act (Cap 243), Fifth Schedule Part(s) as amended by the Local Governments (Amendment) Act 2008 - graduated LST bands by income class", "status": "not_captured"},
-    {"instrument": "tva_ug (VAT)", "outputs": ["tva_s"], "governing_law": "Value Added Tax Act (Cap 349), s.24 standard rate (18%) + schedules for exempt/zero-rated supplies", "status": "not_captured"},
-    {"instrument": "tex_ug / tex01_ug (excise duties)", "outputs": ["tex01_s", "tex02_s"], "governing_law": "Excise Duty Act 2014, Schedule 2 as amended annually (per-litre and ad-valorem rows)", "status": "not_captured"},
-    {"instrument": "boa_ug (Senior Citizens Grant)", "outputs": ["boa_s"], "governing_law": "Administrative: Ministry of Gender, Labour and Social Development SAGE/SCG programme (Expanding Social Protection programme documentation)", "status": "not_captured"}
+  "validation_year": "CY2025",
+  "focus": "Zambia tax-benefit surface: individual income tax (Charging Schedule rates, collected through PAYE), turnover tax, NAPSA pension and NHIMA health-insurance contributions, VAT, excise duties, and the Social Cash Transfer and other cash and in-kind transfer programmes needed for household-level calculations.",
+  "scope": "zambia_tax_benefit",
+  "jurisdiction_layers": {
+    "national": {
+      "namespace": "zm",
+      "description": "Zambia is a unitary state. All encoded statutes, regulations, and agency/programme policy surfaces live under the single national zm/ namespace; there is no provincial layer."
+    }
+  },
+  "purpose": "Machine-readable intake map from Zambia tax-benefit tracks to their governing law, the RuleSpec modules that encode them, and the oracle suites that compare them.",
+  "source_priority": [
+    "Parliament of Zambia assented Act prints and Government Printer editions (parliament.gov.zm direct PDFs; ZambiaLII AKN source PDFs).",
+    "Statutory-instrument gazette prints for rates, ceilings and schedules prescribed by regulation.",
+    "Zambia Revenue Authority (ZRA) practice notes and ministry programme documentation only after the governing instrument is identified, or as verified reproductions where a primary statutory-instrument print is not publicly digitized (flagged in manifest metadata).",
+    "MicroZAMOD (SOUTHMOD_A4.0), pinned in data/oracles/oracle-index.json, as a household-level comparison reference only: supporting, never legal authority."
+  ],
+  "current_blockers": [
+    {
+      "id": "supervised-encoder-backfill",
+      "description": "The modules the MicroZAMOD suites compare carry manual-attestation manifests and the two imported excise-rate modules have none, so none is supervised-encoder output; the backfill re-encodes them with axiom-encode encode --backend codex --apply and re-runs the suites.",
+      "issue": "https://github.com/TheAxiomFoundation/rulespec-zm/issues/24"
+    },
+    {
+      "id": "post-encode-repair-queue",
+      "description": "Proof-atom, proof-excerpt and deferral repairs from the 2026-07-20 encoding lane.",
+      "issue": "https://github.com/TheAxiomFoundation/rulespec-zm/issues/20"
+    }
+  ],
+  "tracks": [
+    {
+      "id": "individual-income-tax-rate-schedule",
+      "namespace": "zm",
+      "bucket": "statutes",
+      "primary_source": "Income Tax Act (Cap. 323), Charging Schedule paragraph 2(1) individual rates, as amended by section 11(a) of the Income Tax (Amendment) Act, 2023 (Act No. 22 of 2023).",
+      "agency_surface": "Zambia Revenue Authority (ZRA) rate tables and PAYE guides.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/statutes/act-2023-22/income-tax-amendment-2023.yaml"
+      ],
+      "oracle_suites": [
+        "zm-paye-rate-schedule"
+      ]
+    },
+    {
+      "id": "chargeable-income-chain",
+      "namespace": "zm",
+      "bucket": "statutes",
+      "primary_source": "Income Tax Act (Cap. 323), section 37 as amended (including the substitution of subsection (1) by section 4 of the Income Tax (Amendment) Act, 2024 (Act No. 22 of 2024)) and the other provisions that take an employee's gross emoluments to the income the Charging Schedule taxes.",
+      "status": "planned",
+      "note": "Of section 37, only the subsection (1) substitution by Act No. 22 of 2024 section 4 is captured; the rest of section 37 and the principal Act are needed to ground whether any employee contribution is deductible in CY2025 (rulespec-zm#24 item 5). Needed for the gross-to-net flagship calculation (README listing gate 1)."
+    },
+    {
+      "id": "turnover-tax",
+      "namespace": "zm",
+      "bucket": "statutes",
+      "primary_source": "Income Tax Act (Cap. 323), section 64A and Ninth Schedule Part II, as amended by sections 8 and 14(b) of the Income Tax (Amendment) Act, 2024 (Act No. 22 of 2024).",
+      "agency_surface": "ZRA rate tables and practice notes.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/statutes/act-2024-22/income-tax-amendment-2024.yaml"
+      ],
+      "oracle_suites": [
+        "zm-turnover"
+      ]
+    },
+    {
+      "id": "napsa-contributions",
+      "namespace": "zm",
+      "bucket": "regulations",
+      "primary_source": "National Pension Scheme Act (Cap. 256) and the pensionable-earnings regulations made under it: S.I. No. 9 of 2024 (Second Schedule social security ceiling and Fifth Schedule contribution-table notes, for 2024) and S.I. No. 103 of 2025 (the schedules it substitutes, for 2026).",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/regulations/si-2024-9/pensionable-earnings-amendment-2024.yaml",
+        "zm/regulations/si-2025-103/pensionable-earnings-amendment-2025.yaml"
+      ],
+      "oracle_suites": [
+        "zm-napsa-contributions"
+      ],
+      "note": "No captured instrument sets the 2025 ceiling, so zm-napsa-contributions runs on the 2024 instrument's year (see data/oracles/oracle-index.json)."
+    },
+    {
+      "id": "national-pension-scheme-benefits",
+      "namespace": "zm",
+      "bucket": "statutes",
+      "primary_source": "National Pension Scheme Act (Cap. 256), sections 2, 15(2), 18, 19(4) and 22(1), and sections 19A, 21A, 24(4) and 34(3) as inserted by the National Pension Scheme (Amendment) Act, 2023 (Act No. 1 of 2023).",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/statutes/cap-256/national-pension-scheme-act.yaml",
+        "zm/statutes/act-2023-1/national-pension-scheme-amendment-2023.yaml"
+      ]
+    },
+    {
+      "id": "nhima-contributions",
+      "namespace": "zm",
+      "bucket": "regulations",
+      "primary_source": "National Health Insurance (General) Regulations, 2019 (S.I. No. 63 of 2019), regulation 9 and Third Schedule, made under the National Health Insurance Act, 2018 (Act No. 2 of 2018).",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/regulations/si-2019-63/national-health-insurance-general-regulations-2019.yaml"
+      ],
+      "oracle_suites": [
+        "zm-nhima-contributions"
+      ]
+    },
+    {
+      "id": "national-health-insurance-membership",
+      "namespace": "zm",
+      "bucket": "statutes",
+      "primary_source": "National Health Insurance Act, 2018 (Act No. 2 of 2018), sections 13 and 16 (membership registration and contribution-exemption categories).",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/statutes/act-2018-2/national-health-insurance-act-2018.yaml"
+      ],
+      "note": "rulespec-zm#20 item 4 asks for a fuller re-encode of this Act."
+    },
+    {
+      "id": "value-added-tax",
+      "namespace": "zm",
+      "bucket": "statutes",
+      "primary_source": "Value Added Tax Act (Cap. 331), section 9(1) and 9(3), with the Value Added Tax (Rate of Tax) Order, 2008 (S.I. No. 14 of 2008), captured through the ZRA Practice Note No. 1/2008 verbatim reproduction because the primary print is not publicly digitized.",
+      "agency_surface": "ZRA practice notes.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/statutes/cap-331/value-added-tax-act.yaml",
+        "zm/policies/zra-pn-2008-1/vat-rate-of-tax-order-16-percent.yaml"
+      ],
+      "oracle_suites": [
+        "zm-vat"
+      ],
+      "note": "The standard rate is encoded in both modules; zm-vat reads the Cap. 331 module only (rulespec-zm#24 item 2)."
+    },
+    {
+      "id": "excise-duties",
+      "namespace": "zm",
+      "bucket": "statutes",
+      "primary_source": "Customs and Excise Act (Cap. 322), Second Schedule excise rows as amended by the Customs and Excise (Amendment) Acts No. 19 of 2018, No. 45 of 2021, No. 25 of 2022, No. 25 of 2023 and No. 24 of 2024.",
+      "agency_surface": "ZRA excise practice notes.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/statutes/act-2018-19/customs-and-excise-amendment-2018.yaml",
+        "zm/statutes/act-2021-45/customs-and-excise-amendment-2021.yaml",
+        "zm/statutes/act-2022-25/customs-and-excise-amendment-2022.yaml",
+        "zm/statutes/act-2023-25/customs-and-excise-amendment-2023.yaml",
+        "zm/statutes/act-2024-24/customs-and-excise-amendment-2024.yaml"
+      ],
+      "oracle_suites": [
+        "zm-excise-ad-valorem"
+      ],
+      "note": "zm-excise-ad-valorem compares the wine and spirits duties only. The act-2024-24 summary carries an unsourced fuel-duty split and the two imported rate modules have no manifest (rulespec-zm#24 items 1 and 3). The act-2023-25 module also encodes customs-duty, surtax and administrative provisions outside the household surface."
+    },
+    {
+      "id": "clear-beer-excise-suspension",
+      "namespace": "zm",
+      "bucket": "policies",
+      "primary_source": "Customs and Excise (Suspension) (Clear Beer) Regulations (S.I. Nos. 66 and 71 of 2023), captured through the verified reproduction in ZRA Practice Note No. 1/2024.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/policies/zra-pn-2024-1/clear-beer-suspension-regulations.yaml"
+      ]
+    },
+    {
+      "id": "social-cash-transfer",
+      "namespace": "zm",
+      "bucket": "policies",
+      "primary_source": "Ministry of Community Development and Social Services (MCDSS) Ministerial Statement on the Social Cash Transfer (standing transfer values); eligibility under the MCDSS SCT guidelines is supplied as module inputs.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/policies/mcdss-sct/ministerial-statement-transfer-values.yaml"
+      ],
+      "oracle_suites": [
+        "zm-sct"
+      ]
+    },
+    {
+      "id": "single-employee-disposable-income",
+      "namespace": "zm",
+      "bucket": "statutes",
+      "primary_source": "Composed single-employee disposable income built on the imported Act No. 22 of 2023 Charging Schedule income tax, with the employee NAPSA and NHIMA contributions taken as inputs (their rates are encoded under S.I. No. 9 of 2024 and S.I. No. 63 of 2019); assembled, not encoded from a provision.",
+      "status": "encoded",
+      "rulespec_modules": [
+        "zm/statutes/composed/pilot-worker-disposable-income-pipeline.yaml"
+      ],
+      "oracle_suites": [
+        "zm-dispy"
+      ],
+      "note": "The CY2025 program spec zm/programs/income-tax/cy-2025.yaml composes it. The pipeline lacks module.kind: composition, and its claim that the CY2025 base is gross rests on uncaptured law (rulespec-zm#24 item 5)."
+    },
+    {
+      "id": "supporting-womens-livelihood",
+      "namespace": "zm",
+      "bucket": "policies",
+      "primary_source": "Supporting Women's Livelihood programme: official MCDSS programme documentation.",
+      "status": "planned"
+    },
+    {
+      "id": "keeping-girls-in-school",
+      "namespace": "zm",
+      "bucket": "policies",
+      "primary_source": "Keeping Girls in School programme: official Ministry of Education programme documentation.",
+      "status": "planned"
+    },
+    {
+      "id": "home-grown-school-meals",
+      "namespace": "zm",
+      "bucket": "policies",
+      "primary_source": "Home Grown School Meal programme: official Ministry of Education programme documentation.",
+      "status": "planned"
+    },
+    {
+      "id": "farmer-input-support-programme",
+      "namespace": "zm",
+      "bucket": "policies",
+      "primary_source": "Farmer Input Support Programme: official Ministry of Agriculture programme documentation.",
+      "status": "planned"
+    },
+    {
+      "id": "food-security-pack",
+      "namespace": "zm",
+      "bucket": "policies",
+      "primary_source": "Food Security Pack programme: official MCDSS programme documentation.",
+      "status": "planned"
+    }
   ]
 }

@@ -1,38 +1,181 @@
 {
-  "generated_at": "2026-07-08",
+  "generated_at": "2026-10-04",
   "jurisdiction": "zm",
-  "focus": "Zambia tax-benefit surface: national income tax (PAYE), rental income tax, presumptive small-business tax, NSSF contributions, Local Service Tax, VAT, excise duties, and the Senior Citizens Grant.",
+  "focus": "Zambia tax-benefit surface: individual income tax (Charging Schedule rates, collected through PAYE), turnover tax, NAPSA pension and NHIMA health-insurance contributions, VAT, excise duties, the Social Cash Transfer and the other MCDSS, Ministry of Education and Ministry of Agriculture transfer programmes, and composed single-employee disposable income.",
   "purpose": "Household-level comparison-oracle and supporting-source references for Zambia Axiom coverage. None of these are legal authority.",
   "oracle_scope": "A RuleSpec oracle must be an executable, pinned external calculator that accepts household-level inputs and returns household-level tax-benefit outputs comparable to Axiom outputs. Aggregate simulators, distributional reports, parameter documentation, and public model summaries are supporting references only, not oracles.",
   "oracles": [
     {
-      "id": "ugamod",
+      "id": "microzamod",
       "name": "MicroZAMOD",
-      "url": "https://www.wider.unu.edu/project/ugamod-tax-benefit-microsimulation-model-uganda",
+      "url": "https://www.wider.unu.edu/about/microzamod-%E2%80%93-simulating-tax-and-benefit-policies-development-zambia",
       "local_path": "~/.axiom/oracles/southmod/bundle/SOUTHMOD_A4.0 (licensed, non-redistributable; never committed)",
       "commit": null,
       "model": "SOUTHMOD_A4.0",
-      "dataset": "ug_2016_a11.txt, ug_2020_a1.txt, ug_2024_a1.txt (UNHS-based input microdata shipped in the bundle)",
-      "role": "Household-level tax-benefit comparison oracle for Zambia. MicroZAMOD is the SOUTHMOD tax-benefit microsimulation model for Zambia (UNU-WIDER, in collaboration with the Ministry of Finance, Planning and Economic Development). Built on the EUROMOD platform; systems UG_2016-UG_2025.",
+      "dataset": "zm_2022_a2 dataset configuration (Zambia Statistics Agency, Living Conditions Monitoring Survey 2022); only its variable list is read and every comparison household is synthetic",
+      "role": "Household-level tax-benefit comparison oracle for Zambia, wired through per-case suites in axiom-oracles (see wired). MicroZAMOD is the SOUTHMOD tax-benefit microsimulation model for Zambia (UNU-WIDER), built on the EUROMOD platform.",
       "coverage": [
         "personal_income_tax",
-        "paye",
-        "rental_income_tax",
-        "presumptive_tax",
+        "turnover_tax",
         "social_security_contributions",
-        "local_service_tax",
+        "health_insurance_contributions",
         "vat",
         "excise_duties",
         "cash_transfers",
         "household_disposable_income"
       ],
-      "authority": "bundle_in_hand_wiring_pending",
+      "authority": "wired_per_case_parity",
       "availability_check": {
-        "checked_at": "2026-07-08",
-        "status": "bundle_in_hand_wiring_pending",
-        "detail": "The licensed SOUTHMOD A4.0 bundle held under the Adhesion Agreement for the Ghana lane also carries MicroZAMOD with systems UG_2016-UG_2025 and three bundled UNHS-based input datasets, so per-case and dataset-backed probes need no further data application (personal links; non-redistributable; the bundle and datasets must never be committed or shared). The EUROMOD-engine runtime is proven from the Ghana lane (x86_64 py3.12 venv + euromod 0.2.18 + x64 .NET 10). Oracle wiring (zm: prefix mapping, UG country scope, per-case parity suites against UG_2025 = FY2025/26) follows the Ghana recipe; until wired, zm: outputs remain classified not_comparable and parity tests stay deferred. The UG_2025 policy-surface inventory (23 policies, 9 active instruments) is recorded at ~/.axiom/oracles/southmod/harness-zm/ugamod/inventory_result.json."
+        "checked_at": "2026-10-04",
+        "status": "wired_per_case_parity",
+        "detail": "UNU-WIDER approved the SOUTHMOD access request on 2026-07-07, and MicroZAMOD ships in that bundle, so it needed no separate application; the bundle (SOUTHMOD A4.0, sha256 below) is held locally under the SOUTHMOD_A4.0 Adhesion Agreement (personal links; non-redistributable; never committed or shared). MicroZAMOD is wired as the Zambia household oracle by eight per-case comparison suites in TheAxiomFoundation/axiom-oracles (comparisons/zm-*.yaml, axiom-oracles#241, #249, #250 and #252), run on system ZM_2025 (zm-napsa-contributions and zm-sct on ZM_2024) through scripts/run_comparison.py on the licensed machine. They are manual-lane suites (ci: manual): clause 4 of the agreement bars giving the bundle or its input data to any third party, so they never run on shared CI runners. On 2026-10-04, against rulespec-zm 664fbba and axiom-rules-engine 6f62c12: 30 cases, 36 comparisons, 36 matched and 0 dispositioned. Oracle-side findings, none of which a live case exercises, are recorded in axiom-oracles axiom_oracles/data/microzamod_issues.json. The rulespec-zm modules these suites compare carry manual-attestation manifests, and the two modules zm-excise-ad-valorem reaches through imports have none, so none is supervised-encoder output (rulespec-zm#24); the comparisons should be re-run after any supervised re-encode."
       },
-      "bundle_sha256": "741855bd23cf4c4a0a61a80def06a078fd3f0551a452b5853a2e46c7e2486a5f"
+      "bundle_sha256": "741855bd23cf4c4a0a61a80def06a078fd3f0551a452b5853a2e46c7e2486a5f",
+      "systems": "ZM_2025 (CY2025); zm-napsa-contributions and zm-sct run ZM_2024 (see wired)",
+      "acknowledgement": "Results are based on the tax-benefit microsimulation model for Zambia (MicroZAMOD) in SOUTHMOD_A4.0, developed, maintained and managed by UNU-WIDER with SASPRI, the LSE International Inequalities Institute and local partners, run on the EUROMOD software (EM_Executable 1.0.0 via the euromod connector 0.2.18) under the zm_2022_a2 dataset configuration (Zambia Statistics Agency, Living Conditions Monitoring Survey 2022); only the dataset's variable list is read and every household is synthetic. The results and their interpretation are Axiom's responsibility.",
+      "wired": {
+        "oracles_prs": [
+          "TheAxiomFoundation/axiom-oracles#241",
+          "TheAxiomFoundation/axiom-oracles#249",
+          "TheAxiomFoundation/axiom-oracles#250",
+          "TheAxiomFoundation/axiom-oracles#252"
+        ],
+        "system": "ZM_2025",
+        "dataset_configuration": "zm_2022_a2 (variable list only; every comparison household is synthetic)",
+        "last_run": {
+          "date": "2026-10-04",
+          "axiom_rules_engine": "6f62c12",
+          "rulespec_zm": "664fbba"
+        },
+        "totals": {
+          "suites": 8,
+          "cases": 30,
+          "comparisons": 36,
+          "matched": 36,
+          "dispositioned": 0
+        },
+        "suites": [
+          {
+            "suite": "zm-dispy",
+            "cases": 2,
+            "comparisons": 2,
+            "matched": 2,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "zm:statutes/composed/pilot-worker-disposable-income-pipeline#pilot_worker_disposable_income"
+            ],
+            "microzamod_variables": [
+              "ils_dispy"
+            ],
+            "note": "Live cases sit at or below the income-tax exempt bound, where neither side charges tax, and the model's own contribution outputs feed the pipeline's contribution inputs, so this suite tests the composition and the nil tax leg; zm-napsa-contributions and zm-nhima-contributions test the contributions. Above the exempt bound the two sides differ on the taxable base (rulespec-zm#1 candidate finding 1 in microzamod_issues.json; rulespec-zm#24 item 5)."
+          },
+          {
+            "suite": "zm-excise-ad-valorem",
+            "cases": 4,
+            "comparisons": 4,
+            "matched": 4,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "zm:statutes/act-2024-24/customs-and-excise-amendment-2024#wine_duty",
+              "zm:statutes/act-2024-24/customs-and-excise-amendment-2024#spirits_duty"
+            ],
+            "microzamod_variables": [
+              "tex02_s",
+              "tex02_s"
+            ],
+            "note": "Bridged input: each case gives the module the expenditure base the model applies the duty to, so the suite tests the wine and spirits ad valorem rates on that base, not the statutory duty base. Cigarettes, fuel and clear beer are not compared (no concept mapping); their differences are rulespec-zm#1 findings 3 to 5 in microzamod_issues.json."
+          },
+          {
+            "suite": "zm-napsa-contributions",
+            "system": "ZM_2024",
+            "cases": 3,
+            "comparisons": 6,
+            "matched": 6,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employee_contribution",
+              "zm:regulations/si-2024-9/pensionable-earnings-amendment-2024#napsa_employer_contribution"
+            ],
+            "microzamod_variables": [
+              "tsceepi_s",
+              "tscerpi_s"
+            ],
+            "note": "Runs ZM_2024 because the encoded instrument, S.I. No. 9 of 2024, sets the 2024 social security ceiling, and no instrument setting a 2025 ceiling is captured."
+          },
+          {
+            "suite": "zm-nhima-contributions",
+            "cases": 3,
+            "comparisons": 6,
+            "matched": 6,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employee_monthly_contribution_amount",
+              "zm:regulations/si-2019-63/national-health-insurance-general-regulations-2019#employer_monthly_contribution_amount"
+            ],
+            "microzamod_variables": [
+              "tsceehl_s",
+              "tscerhl_s"
+            ]
+          },
+          {
+            "suite": "zm-paye-rate-schedule",
+            "cases": 8,
+            "comparisons": 8,
+            "matched": 8,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "zm:statutes/act-2023-22/income-tax-amendment-2023#individual_income_tax"
+            ],
+            "microzamod_variables": [
+              "tin_s"
+            ],
+            "note": "Bridged input: the model's own taxable-base output is fed to the module's individual_income input, so the suite tests the Charging Schedule arithmetic, not the taxable base. Whether the CY2025 base is gross is rulespec-zm#1 candidate finding 1 (microzamod_issues.json) and rulespec-zm#24 item 5."
+          },
+          {
+            "suite": "zm-sct",
+            "system": "ZM_2024",
+            "cases": 2,
+            "comparisons": 2,
+            "matched": 2,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "zm:policies/mcdss-sct/ministerial-statement-transfer-values#sct_monthly_transfer"
+            ],
+            "microzamod_variables": [
+              "bsa_s"
+            ],
+            "note": "Runs ZM_2024, whose transfer values on these households equal the captured MCDSS Ministerial Statement; ZM_2025 pays more on the same households, which no captured source explains (rulespec-zm#1 finding 6 in microzamod_issues.json). Eligibility is a module input, so only the transfer values are compared."
+          },
+          {
+            "suite": "zm-turnover",
+            "cases": 5,
+            "comparisons": 5,
+            "matched": 5,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "zm:statutes/act-2024-22/income-tax-amendment-2024#turnover_tax"
+            ],
+            "microzamod_variables": [
+              "ttn_s"
+            ],
+            "note": "Restricted test zone: live cases sit above the zero-rate band and below the section 64A ceiling, where both sides agree. The differences at the zero-rate band and at the ceiling are rulespec-zm#1 candidate findings 2a and 2b in microzamod_issues.json, outside the grid."
+          },
+          {
+            "suite": "zm-vat",
+            "cases": 3,
+            "comparisons": 3,
+            "matched": 3,
+            "dispositioned": 0,
+            "axiom_outputs": [
+              "zm:statutes/cap-331/value-added-tax-act#vat_amount"
+            ],
+            "microzamod_variables": [
+              "tva_s"
+            ],
+            "note": "Bridged input: each case feeds the model's own VAT base to the module's taxable_value input, so the suite tests the standard rate on that base, not the statutory definition of taxable value."
+          }
+        ]
+      }
     }
   ]
 }
